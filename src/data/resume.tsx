@@ -8,23 +8,40 @@ export const DATA = {
   location: "Hamilton, ON, Canada",
   locationLink: "https://www.google.com/maps/place/hamilton+ontario",
   description:
-    "Computer Science Student & Software Developer. Passionate about automation, API development, and full-stack web applications.",
+    "Computer Science Co-op Student at McMaster University. Passionate about software development, automation, and solving complex technical challenges.",
   summary:
-    "Fourth-year Computer Science student at McMaster University with co-op experience at The Cooperators. Specialized in automation, API development, and full-stack web applications using modern technologies like Python, JavaScript, and PowerShell. I enjoy building efficient solutions and have experience with API integration, database management, and automation systems.",
+    "Currently pursuing a Bachelor of Computer Science Co-op at McMaster University with hands-on experience in technical support, software development, and automation. I've worked at Cooperators as an Associate Technical Support Specialist and interned as a Software Developer at MoMacMo, developing geophysical data visualization tools on AWS. I'm passionate about creating efficient solutions and optimizing processes through automation.",
   avatarUrl: "/me.png",
   skills: [
     "Python",
-    "JavaScript",
-    "PowerShell",
-    "React",
-    "HTML5",
-    "CSS3",
     "Java",
     "C/C++",
+    "JavaScript",
+    "HTML",
+    "CSS",
     "SQL",
+    "Haskell",
+    "Elm",
+    "Assembly",
+    "LaTeX",
+    "Prolog",
+    "PowerShell",
+    "React",
     "AWS",
-    "Git",
+    "Linux",
+    "GitHub",
     "MongoDB",
+    "Figma",
+    "Bootstrap",
+    "NumPy",
+    "SciPy",
+    "Matplotlib",
+    "Jupyter Notebook",
+    "Git",
+    "VS Code",
+    "IntelliJ IDEA",
+    "ServiceNow API",
+    "Power Automate",
   ],
   navbar: [
     { href: "/", icon: HomeIcon, label: "Home" },
@@ -57,29 +74,101 @@ export const DATA = {
 
   work: [
     {
-      company: "The Cooperators",
+      company: "Cooperators",
       href: "https://www.cooperators.ca",
-      badges: ["Co-op"],
-      location: "Remote/Hamilton, ON",
-      title: "Software Development Co-op",
+      badges: ["Co-op", "2nd Level Support"],
+      location: "Burlington, ON",
+      title: "Associate Technical Support Specialist",
       logoUrl: "/cooperators.png",
-      start: "2023",
-      end: "2024",
+      start: "Sep 2024",
+      end: "Aug 2025",
       description:
-        "Developed PowerShell automation scripts and worked with ServiceNow to streamline business processes. Created API integrations and automated workflows that improved operational efficiency.",
+        "Resolved 100+ 2nd level support tickets monthly across Windows/macOS with 95% SLA resolution rate. Automated key support tasks using PowerShell, ServiceNow API, and Power Automate, reducing manual workload by 40%. Authored 25+ internal documentation articles, reducing repeat inquiries by 25%.",
+    },
+    {
+      company: "MoMacMo",
+      href: "https://www.momacmo.org/",
+      badges: ["Internship", "Remote"],
+      location: "Houston, TX",
+      title: "Software Developer Intern",
+      logoUrl: "/momacmo.png",
+      start: "Jun 2023",
+      end: "Dec 2023",
+      description:
+        "Deployed geophysical datasets on Microscopium using AWS, enabling graphing of data points to enhance visualization. Engineered and deployed Microscopium using Python and Matplotlib with ngrok for online platform transition. Achieved 25% increase in processing speed and 35% cost reduction through strategic AWS resource management.",
     },
   ],
   education: [
     {
       school: "McMaster University",
       href: "https://www.mcmaster.ca",
-      degree: "Bachelor of Applied Science in Computer Science",
+      degree: "Bachelor of Computer Science Co-op",
       logoUrl: "/mcmaster.png",
-      start: "2021",
-      end: "2025",
+      start: "Sep 2021",
+      end: "Present",
     },
   ],
   projects: [
+    {
+      title: "Food Recipe Finder",
+      href: "https://recipe-finder-demo.netlify.app/",
+      dates: "Jan 2023 - Mar 2023",
+      active: true,
+      description:
+        "Interactive Recipe Finder using React with multiple integrated components for a seamless user experience. Utilized React Router for smooth navigation and integrated Spoonacular API to dynamically fetch and display recipes. Leveraged Bootstrap for fully responsive design across all devices.",
+      technologies: [
+        "React",
+        "JavaScript",
+        "Bootstrap",
+        "React Router",
+        "Spoonacular API",
+        "Responsive Design",
+      ],
+      links: [
+        {
+          type: "Website",
+          href: "https://recipe-finder-demo.netlify.app/",
+          icon: <Icons.globe className="size-3" />,
+        },
+        {
+          type: "Source",
+          href: "https://github.com/Jamwali/FoodRecipeFinder",
+          icon: <Icons.github className="size-3" />,
+        },
+      ],
+      image: "",
+      video: "",
+    },
+    {
+      title: "London Subway Pathfinding Algorithm",
+      href: "https://subway-pathfinding.netlify.app/",
+      dates: "Jan 2023 - Apr 2023",
+      active: true,
+      description:
+        "Advanced graph representation modeling London subway stations as nodes for comprehensive algorithmic analysis. Implemented location-based heuristics for Dijkstra's, Bellman-Ford's, and A* algorithms, significantly improving efficiency. Conducted thorough performance evaluations focusing on execution time, accuracy, and real-world applications.",
+      technologies: [
+        "Python",
+        "Matplotlib",
+        "Graph Algorithms",
+        "Dijkstra's Algorithm",
+        "A* Algorithm",
+        "Data Structures",
+      ],
+      links: [
+        {
+          type: "Website",
+          href: "https://subway-pathfinding.netlify.app/",
+          icon: <Icons.globe className="size-3" />,
+        },
+        {
+          type: "Source",
+          href: "https://github.com/Jamwali/LondonSubwayPathfinding",
+          icon: <Icons.github className="size-3" />,
+        },
+      ],
+      image: "",
+      video: "",
+    },
     {
       title: "Personal Portfolio",
       href: "https://aquamarine-kataifi-e281d7.netlify.app/",
@@ -141,7 +230,7 @@ export const DATA = {
     },
     {
       title: "Password Manager",
-      href: "#",
+      href: "https://password-manager-secure.netlify.app/",
       dates: "2024",
       active: false,
       description:
@@ -155,8 +244,13 @@ export const DATA = {
       ],
       links: [
         {
+          type: "Website",
+          href: "https://password-manager-secure.netlify.app/",
+          icon: <Icons.globe className="size-3" />,
+        },
+        {
           type: "Source",
-          href: "#",
+          href: "https://github.com/Jamwali/PasswordManager",
           icon: <Icons.github className="size-3" />,
         },
       ],
@@ -165,7 +259,7 @@ export const DATA = {
     },
     {
       title: "Cybersecurity Tool",
-      href: "#",
+      href: "https://cybersecurity-scanner.netlify.app/",
       dates: "2024",
       active: false,
       description:
@@ -179,54 +273,13 @@ export const DATA = {
       ],
       links: [
         {
-          type: "Source",
-          href: "#",
-          icon: <Icons.github className="size-3" />,
+          type: "Website",
+          href: "https://cybersecurity-scanner.netlify.app/",
+          icon: <Icons.globe className="size-3" />,
         },
-      ],
-      image: "",
-      video: "",
-    },
-    {
-      title: "Personal Finance Tracker",
-      href: "#",
-      dates: "Upcoming",
-      active: false,
-      description:
-        "Comprehensive personal finance management and budgeting application. Will feature expense tracking, budget planning, and financial insights.",
-      technologies: [
-        "React",
-        "Node.js",
-        "MongoDB",
-        "Express",
-        "Financial APIs",
-      ],
-      links: [
         {
           type: "Source",
-          href: "#",
-          icon: <Icons.github className="size-3" />,
-        },
-      ],
-      image: "",
-      video: "",
-    },
-    {
-      title: "Capstone Project",
-      href: "#",
-      dates: "2025",
-      active: false,
-      description:
-        "Final year computer science capstone project. Details to be announced as the project develops throughout the academic year.",
-      technologies: [
-        "TBD",
-        "Computer Science",
-        "Final Year Project",
-      ],
-      links: [
-        {
-          type: "Source",
-          href: "#",
+          href: "https://github.com/Jamwali/CybersecurityTool",
           icon: <Icons.github className="size-3" />,
         },
       ],

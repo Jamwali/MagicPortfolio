@@ -1,7 +1,7 @@
 "use client";
 
 import BlurFade from "@/components/magicui/blur-fade";
-import { ShimmerButton } from "@/components/magicui/shimmer-button";
+import { ShinyButton } from "@/components/magicui/shiny-button";
 import { DATA } from "@/data/resume";
 import Link from "next/link";
 
@@ -37,12 +37,9 @@ const ContactSection = ({ delay }: ContactSectionProps) => {
               soliciting.
             </p>
             <div className="flex justify-center mt-6">
-              <ShimmerButton
-                onClick={handleResumeDownload}
-                className="bg-blue-600 hover:bg-blue-700"
-              >
+              <ShinyButton onClick={handleResumeDownload}>
                 📄 Download Resume
-              </ShimmerButton>
+              </ShinyButton>
             </div>
           </div>
         </BlurFade>

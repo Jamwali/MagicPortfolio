@@ -1,3 +1,5 @@
+"use client";
+
 import { Dock, DockIcon } from "@/components/magicui/dock";
 import { AnimatedThemeToggler } from "@/components/magicui/animated-theme-toggler";
 import { buttonVariants } from "@/components/ui/button";
@@ -26,10 +28,10 @@ export default function Navbar() {
                   rel={item.href.includes('.pdf') ? 'noopener noreferrer' : undefined}
                   className={cn(
                     buttonVariants({ variant: "ghost", size: "icon" }),
-                    "size-13"
+                    "size-13 text-black dark:text-white hover:text-black dark:hover:text-white"
                   )}
                 >
-                  <item.icon className="size-4" />
+                  <item.icon className="size-4 text-black dark:text-white" />
                 </Link>
               </TooltipTrigger>
               <TooltipContent>
@@ -49,10 +51,10 @@ export default function Navbar() {
                     href={social.url}
                     className={cn(
                       buttonVariants({ variant: "ghost", size: "icon" }),
-                      "size-13"
+                      "size-13 text-black dark:text-white hover:text-black dark:hover:text-white"
                     )}
                   >
-                    <social.icon className="size-4" />
+                    <social.icon className="size-4 text-black dark:text-white" />
                   </Link>
                 </TooltipTrigger>
                 <TooltipContent>
