@@ -78,7 +78,7 @@ const HyperText = ({
         setIsAnimating(false);
       }
     }, revealSpeed);
-  }, [children, duration, isAnimating]);
+  }, [children, duration, isAnimating, characterSet]);
 
   useEffect(() => {
     if (startOnView && isInView) {
