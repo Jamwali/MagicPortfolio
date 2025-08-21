@@ -41,7 +41,7 @@ export default function Page() {
           <div className="flex-col flex flex-1 space-y-1.5">
             <BlurFade delay={BLUR_FADE_DELAY}>
               <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none text-foreground">
-                Hi, I'm <HyperText className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none text-foreground">{DATA.name.split(" ")[0]}</HyperText> 👋
+                Hi, I&apos;m <HyperText className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none text-foreground">{DATA.name.split(" ")[0]}</HyperText> 👋
               </h1>
             </BlurFade>
             <BlurFadeText

@@ -2,7 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import { useInView } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 interface HyperTextProps {
   children: string;
@@ -32,7 +32,7 @@ const HyperText = ({
   const ref = useRef<HTMLElement>(null);
   const isInView = useInView(ref, { once: true });
 
-  const scrambleText = () => {
+  const scrambleText = useCallback(() => {
     if (isAnimating) return;
     setIsAnimating(true);
 
@@ -78,14 +78,14 @@ const HyperText = ({
         setIsAnimating(false);
       }
     }, revealSpeed);
-  };
+  }, [children, duration, isAnimating]);
 
   useEffect(() => {
     if (startOnView && isInView) {
       const timer = setTimeout(scrambleText, delay);
       return () => clearTimeout(timer);
     }
-  }, [isInView, startOnView, delay]);
+  }, [isInView, startOnView, delay, scrambleText]);
 
   const handleMouseEnter = () => {
     if (animateOnHover) {

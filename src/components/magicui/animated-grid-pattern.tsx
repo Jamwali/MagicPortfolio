@@ -3,6 +3,7 @@
 import { motion } from "motion/react";
 import {
   ComponentPropsWithoutRef,
+  useCallback,
   useEffect,
   useId,
   useRef,
@@ -40,7 +41,7 @@ export function AnimatedGridPattern({
   const id = useId();
   const containerRef = useRef(null);
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
-  const [squares, setSquares] = useState(() => generateSquares(numSquares));
+  const [squares, setSquares] = useState<Array<{ id: number; pos: number[] }>>([]);
 
   function getPos() {
     return [
@@ -50,12 +51,12 @@ export function AnimatedGridPattern({
   }
 
   // Adjust the generateSquares function to return objects with an id, x, and y
-  function generateSquares(count: number) {
+  const generateSquares = useCallback((count: number) => {
     return Array.from({ length: count }, (_, i) => ({
       id: i,
       pos: getPos(),
     }));
-  }
+  }, [getPos]);
 
   // Function to update a single square's position
   const updateSquarePosition = (id: number) => {
@@ -76,7 +77,7 @@ export function AnimatedGridPattern({
     if (dimensions.width && dimensions.height) {
       setSquares(generateSquares(numSquares));
     }
-  }, [dimensions, numSquares]);
+  }, [dimensions, numSquares, generateSquares]);
 
   // Resize observer to update container dimensions
   useEffect(() => {
