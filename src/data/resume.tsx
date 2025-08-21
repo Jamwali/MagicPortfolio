@@ -106,76 +106,17 @@ export const DATA = {
       logoUrl: "/mcmaster.png",
       start: "Sep 2021",
       end: "Present",
+      description: "Comprehensive computer science program with co-operative education experience. Core coursework includes Data Structures and Algorithms, Database Systems, Computational Thinking, Logical Reasoning for Computer Science, Introduction to Software Development, Software Design Using Web Programming, and Principles of Programming Languages. Developing strong foundations in software engineering, problem-solving, and modern programming paradigms.",
     },
   ],
   projects: [
-    {
-      title: "Food Recipe Finder",
-      href: "https://recipe-finder-demo.netlify.app/",
-      dates: "Jan 2023 - Mar 2023",
-      active: true,
-      description:
-        "Interactive Recipe Finder using React with multiple integrated components for a seamless user experience. Utilized React Router for smooth navigation and integrated Spoonacular API to dynamically fetch and display recipes. Leveraged Bootstrap for fully responsive design across all devices.",
-      technologies: [
-        "React",
-        "JavaScript",
-        "Bootstrap",
-        "React Router",
-        "Spoonacular API",
-        "Responsive Design",
-      ],
-      links: [
-        {
-          type: "Website",
-          href: "https://recipe-finder-demo.netlify.app/",
-          icon: <Icons.globe className="size-3" />,
-        },
-        {
-          type: "Source",
-          href: "https://github.com/Jamwali/FoodRecipeFinder",
-          icon: <Icons.github className="size-3" />,
-        },
-      ],
-      image: "",
-      video: "",
-    },
-    {
-      title: "London Subway Pathfinding Algorithm",
-      href: "https://subway-pathfinding.netlify.app/",
-      dates: "Jan 2023 - Apr 2023",
-      active: true,
-      description:
-        "Advanced graph representation modeling London subway stations as nodes for comprehensive algorithmic analysis. Implemented location-based heuristics for Dijkstra's, Bellman-Ford's, and A* algorithms, significantly improving efficiency. Conducted thorough performance evaluations focusing on execution time, accuracy, and real-world applications.",
-      technologies: [
-        "Python",
-        "Matplotlib",
-        "Graph Algorithms",
-        "Dijkstra's Algorithm",
-        "A* Algorithm",
-        "Data Structures",
-      ],
-      links: [
-        {
-          type: "Website",
-          href: "https://subway-pathfinding.netlify.app/",
-          icon: <Icons.globe className="size-3" />,
-        },
-        {
-          type: "Source",
-          href: "https://github.com/Jamwali/LondonSubwayPathfinding",
-          icon: <Icons.github className="size-3" />,
-        },
-      ],
-      image: "",
-      video: "",
-    },
     {
       title: "Personal Portfolio",
       href: "https://aquamarine-kataifi-e281d7.netlify.app/",
       dates: "2024",
       active: true,
       description:
-        "Responsive portfolio website with dark mode and mobile optimization. Built with modern web technologies to showcase my projects and skills.",
+        "Modern portfolio website featuring dark mode, mobile optimization, and responsive design showcasing projects and skills.",
       technologies: [
         "HTML5",
         "CSS3",
@@ -230,11 +171,11 @@ export const DATA = {
     },
     {
       title: "Password Manager",
-      href: "https://password-manager-secure.netlify.app/",
+      href: "",
       dates: "2024",
       active: false,
       description:
-        "Secure password management application with encryption and auto-fill capabilities. Built with Python and Tkinter for desktop use.",
+        "A desktop password manager built with Python, featuring a Pygame GUI and strong encryption to keep your passwords safe. This project demonstrates secure password storage, encryption best practices, and GUI development.",
       technologies: [
         "Python",
         "Tkinter",
@@ -244,13 +185,8 @@ export const DATA = {
       ],
       links: [
         {
-          type: "Website",
-          href: "https://password-manager-secure.netlify.app/",
-          icon: <Icons.globe className="size-3" />,
-        },
-        {
           type: "Source",
-          href: "https://github.com/Jamwali/PasswordManager",
+          href: "https://github.com/Jamwali/Password-Manager",
           icon: <Icons.github className="size-3" />,
         },
       ],
@@ -258,28 +194,24 @@ export const DATA = {
       video: "",
     },
     {
-      title: "Cybersecurity Tool",
-      href: "https://cybersecurity-scanner.netlify.app/",
+      title: "URL Shortener",
+      href: "",
       dates: "2024",
       active: false,
       description:
-        "Network security scanner with vulnerability assessment features. Developed to help identify security vulnerabilities in network infrastructure.",
+        "A modern, high-performance URL shortener built with FastAPI and SQLite providing a clean API for creating short URLs, custom short codes, and optional Redis integration for caching and rate limiting.",
       technologies: [
         "Python",
-        "Nmap",
-        "Scapy",
-        "Network Security",
-        "Vulnerability Assessment",
+        "FastAPI",
+        "SQLite",
+        "Redis",
+        "API Development",
+        "Web Development",
       ],
       links: [
         {
-          type: "Website",
-          href: "https://cybersecurity-scanner.netlify.app/",
-          icon: <Icons.globe className="size-3" />,
-        },
-        {
           type: "Source",
-          href: "https://github.com/Jamwali/CybersecurityTool",
+          href: "https://github.com/Jamwali/URL-Shortner",
           icon: <Icons.github className="size-3" />,
         },
       ],

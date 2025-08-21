@@ -143,10 +143,10 @@ export default function Page() {
               </div>
             </BlurFade>
             <BlurFade delay={BLUR_FADE_DELAY * 12}>
-              <BentoGrid className="auto-rows-[18rem] grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+              <BentoGrid className="auto-rows-[24rem] grid-cols-1 md:grid-cols-2">
                 <BentoCard
                   name={DATA.projects[0].title}
-                  className="col-span-1 md:col-span-2"
+                  className="col-span-1"
                   background={<div />}
                   Icon={Icons.react}
                   description={DATA.projects[0].description}
@@ -176,7 +176,7 @@ export default function Page() {
                 />
                 <BentoCard
                   name={DATA.projects[3].title}
-                  className="col-span-1 md:col-span-2"
+                  className="col-span-1"
                   background={<div />}
                   Icon={Icons.react}
                   description={DATA.projects[3].description}

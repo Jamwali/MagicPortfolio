@@ -60,18 +60,14 @@ const BentoCard = ({
   >
     <div>{background}</div>
     <div className="p-6 h-full flex flex-col">
-      <div className="pointer-events-none z-10 flex transform-gpu flex-col gap-3 transition-all duration-300 lg:group-hover:-translate-y-10 flex-1">
+      <div className="flex-1"></div>
+
+      <div className="pointer-events-none z-10 flex transform-gpu flex-col gap-3 transition-all duration-300 lg:group-hover:-translate-y-2">
         <Icon className="h-12 w-12 origin-left transform-gpu text-foreground transition-all duration-300 ease-in-out group-hover:scale-75" />
         <h3 className="text-xl font-semibold text-foreground font-sans leading-tight">
           {name}
         </h3>
-        <p className="text-sm text-muted-foreground font-sans leading-relaxed overflow-hidden"
-           style={{
-             display: '-webkit-box',
-             WebkitLineClamp: 4,
-             WebkitBoxOrient: 'vertical',
-           }}
-        >
+        <p className="text-sm text-muted-foreground font-sans leading-relaxed">
           {description}
         </p>
       </div>
