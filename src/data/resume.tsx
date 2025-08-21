@@ -132,7 +132,7 @@ export const DATA = {
         },
         {
           type: "Source",
-          href: "https://github.com/Jamwali/PersonalP",
+          href: "https://github.com/Jamwali/MagicPortfolio",
           icon: <Icons.github className="size-3" />,
         },
       ],
