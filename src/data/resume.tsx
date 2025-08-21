@@ -106,7 +106,7 @@ export const DATA = {
       logoUrl: "/mcmaster.png",
       start: "Sep 2021",
       end: "Present",
-      description: "Comprehensive computer science program with co-operative education experience. Core coursework includes Data Structures and Algorithms, Database Systems, Computational Thinking, Logical Reasoning for Computer Science, Introduction to Software Development, Software Design Using Web Programming, and Principles of Programming Languages. Developing strong foundations in software engineering, problem-solving, and modern programming paradigms.",
+      description: "Computer Science Co-op program with experience at working at The Co-operators and MoMacMo. Core coursework includes Data Structures and Algorithms, Database Systems, Computational Thinking, Logical Reasoning for Computer Science, Introduction to Software Development, Software Design Using Web Programming, and Principles of Programming Languages. Developing strong foundations in software engineering, problem-solving, and modern programming paradigms.",
     },
   ],
   projects: [
