@@ -4,7 +4,7 @@ import { HackathonCard } from "@/components/hackathon-card";
 import ContactSection from "@/components/contact-section";
 import BlurFade from "@/components/magicui/blur-fade";
 import BlurFadeText from "@/components/magicui/blur-fade-text";
-import HyperText from "@/components/magicui/hyper-text";
+import { BoxReveal } from "@/components/magicui/box-reveal";
 import { ProjectCard } from "@/components/project-card";
 import { ResumeCard } from "@/components/resume-card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -41,7 +41,7 @@ export default function Page() {
           <div className="flex-col flex flex-1 space-y-1.5">
             <BlurFade delay={BLUR_FADE_DELAY}>
               <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none text-foreground">
-                Hi, I&apos;m <HyperText className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none text-foreground">{DATA.name.split(" ")[0]}</HyperText> 👋
+                Hi, I&apos;m <BoxReveal boxColor="#000000" duration={0.5}><span className="inline-block">{DATA.name.split(" ")[0]}</span></BoxReveal> 👋
               </h1>
             </BlurFade>
             <BlurFadeText

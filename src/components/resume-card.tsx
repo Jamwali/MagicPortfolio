@@ -48,57 +48,60 @@ export const ResumeCard = ({
         <div className="flex-none">
           <Avatar className="border size-12 m-auto bg-muted-background dark:bg-foreground">
             <AvatarImage
-              src={logoUrl}
+              src={logoUrl.startsWith('/') ? logoUrl : ''}
               alt={altText}
               className="object-contain"
             />
-            <AvatarFallback>{altText[0]}</AvatarFallback>
+            <AvatarFallback className="text-xs font-semibold">
+              {logoUrl.startsWith('/') ? altText[0] : logoUrl}
+            </AvatarFallback>
           </Avatar>
         </div>
         <div className="flex-grow ml-4 items-center flex-col group">
-          <CardHeader>
-            <div className="flex items-center justify-between gap-x-2 text-base">
-              <h3 className="inline-flex items-center justify-center font-semibold leading-none text-xs sm:text-sm">
-                {title}
-                {badges && (
-                  <span className="inline-flex gap-x-1">
-                    {badges.map((badge, index) => (
-                      <Badge
-                        variant="secondary"
-                        className="align-middle text-xs"
-                        key={index}
-                      >
-                        {badge}
-                      </Badge>
-                    ))}
-                  </span>
-                )}
+          <CardHeader className="pb-2">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+              <div className="flex items-center gap-2">
+                <h3 className="font-semibold leading-none text-xs sm:text-sm flex-shrink-0">
+                  {title}
+                </h3>
                 <ChevronRightIcon
                   className={cn(
-                    "size-4 translate-x-0 transform opacity-0 transition-all duration-300 ease-out group-hover:translate-x-1 group-hover:opacity-100",
+                    "size-4 translate-x-0 transform opacity-0 transition-all duration-300 ease-out group-hover:translate-x-1 group-hover:opacity-100 flex-shrink-0",
                     isExpanded ? "rotate-90" : "rotate-0"
                   )}
                 />
-              </h3>
-              <div className="text-xs sm:text-sm tabular-nums text-muted-foreground text-right">
+              </div>
+              <div className="text-xs sm:text-sm tabular-nums text-muted-foreground">
                 {period}
               </div>
             </div>
-            {subtitle && <div className="font-sans text-xs">{subtitle}</div>}
+            {badges && (
+              <div className="flex flex-wrap gap-1 mt-1">
+                {badges.map((badge, index) => (
+                  <Badge
+                    variant="secondary"
+                    className="text-xs px-2 py-0.5 h-5"
+                    key={index}
+                  >
+                    {badge}
+                  </Badge>
+                ))}
+              </div>
+            )}
+            {subtitle && <div className="font-sans text-xs mt-1">{subtitle}</div>}
           </CardHeader>
           {description && (
             <motion.div
               initial={{ opacity: 0, height: 0 }}
               animate={{
                 opacity: isExpanded ? 1 : 0,
-
                 height: isExpanded ? "auto" : 0,
               }}
               transition={{
                 duration: 0.7,
                 ease: [0.16, 1, 0.3, 1],
               }}
-              className="mt-2 text-xs sm:text-sm"
+              className="mt-2 text-xs sm:text-sm whitespace-pre-line"
             >
               {description}
             </motion.div>

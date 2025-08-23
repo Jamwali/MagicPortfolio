@@ -45,7 +45,7 @@ export const DATA = {
   ],
   navbar: [
     { href: "/", icon: HomeIcon, label: "Home" },
-    { href: "/Ishaan_Jamwal_Coop_Resume.pdf", icon: FileTextIcon, label: "Resume" },
+    { href: "https://mega.nz/file/SeRxSbwb#FrRBU6Tpp5oMAzLRE89XTXHEAtH2qTR0z3PV-P5ze58", icon: FileTextIcon, label: "Resume" },
   ],
   contact: {
     email: "officialishaanjamwal@gmail.com",
@@ -79,11 +79,11 @@ export const DATA = {
       badges: ["Co-op", "2nd Level Support"],
       location: "Burlington, ON",
       title: "Associate Technical Support Specialist",
-      logoUrl: "/cooperators.png",
+      logoUrl: "C",
       start: "Sep 2024",
       end: "Aug 2025",
       description:
-        "Resolved 100+ 2nd level support tickets monthly across Windows/macOS with 95% SLA resolution rate. Automated key support tasks using PowerShell, ServiceNow API, and Power Automate, reducing manual workload by 40%. Authored 25+ internal documentation articles, reducing repeat inquiries by 25%.",
+        "• Resolved 100+ 2nd level support tickets monthly across Windows/macOS with 95% SLA resolution rate\n• Automated key support tasks using PowerShell, ServiceNow API, and Power Automate, reducing manual workload by 40%\n• Authored 25+ internal documentation articles, reducing repeat inquiries by 25%",
     },
     {
       company: "MoMacMo",
@@ -91,11 +91,11 @@ export const DATA = {
       badges: ["Internship", "Remote"],
       location: "Houston, TX",
       title: "Software Developer Intern",
-      logoUrl: "/momacmo.png",
+      logoUrl: "M",
       start: "Jun 2023",
       end: "Dec 2023",
       description:
-        "Deployed geophysical datasets on Microscopium using AWS, enabling graphing of data points to enhance visualization. Engineered and deployed Microscopium using Python and Matplotlib with ngrok for online platform transition. Achieved 25% increase in processing speed and 35% cost reduction through strategic AWS resource management.",
+        "• Deployed geophysical datasets on Microscopium using AWS, enabling graphing of data points to enhance visualization\n• Engineered and deployed Microscopium using Python and Matplotlib with ngrok for online platform transition\n• Achieved 25% increase in processing speed and 35% cost reduction through strategic AWS resource management",
     },
   ],
   education: [
@@ -103,10 +103,10 @@ export const DATA = {
       school: "McMaster University",
       href: "https://www.mcmaster.ca",
       degree: "Bachelor of Computer Science Co-op",
-      logoUrl: "/mcmaster.png",
+      logoUrl: "M",
       start: "Sep 2021",
       end: "Present",
-      description: "Computer Science Co-op program with experience at working at The Co-operators and MoMacMo. Core coursework includes Data Structures and Algorithms, Database Systems, Computational Thinking, Logical Reasoning for Computer Science, Introduction to Software Development, Software Design Using Web Programming, and Principles of Programming Languages. Developing strong foundations in software engineering, problem-solving, and modern programming paradigms.",
+      description: "• Computer Science Co-op program with experience at working at The Co-operators and MoMacMo\n• Core coursework includes Data Structures and Algorithms, Database Systems, Computational Thinking, Logical Reasoning for Computer Science\n• Additional courses: Introduction to Software Development, Software Design Using Web Programming, and Principles of Programming Languages\n• Developing strong foundations in software engineering, problem-solving, and modern programming paradigms",
     },
   ],
   projects: [
