@@ -45,7 +45,7 @@ export const DATA = {
   ],
   navbar: [
     { href: "/", icon: HomeIcon, label: "Home" },
-    { href: "https://mega.nz/file/SeRxSbwb#FrRBU6Tpp5oMAzLRE89XTXHEAtH2qTR0z3PV-P5ze58", icon: FileTextIcon, label: "Resume" },
+    { href: "https://mega.nz/file/cQhDwCqa#6bFCV321T9qXZp62pkZlepygYS42UBasc1KOwQyD7kk", icon: FileTextIcon, label: "Resume" },
   ],
   contact: {
     email: "officialishaanjamwal@gmail.com",

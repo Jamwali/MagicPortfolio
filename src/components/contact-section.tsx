@@ -11,7 +11,7 @@ interface ContactSectionProps {
 
 const ContactSection = ({ delay }: ContactSectionProps) => {
   const handleResumeDownload = () => {
-    window.open("https://mega.nz/file/SeRxSbwb#FrRBU6Tpp5oMAzLRE89XTXHEAtH2qTR0z3PV-P5ze58", "_blank");
+    window.open("https://mega.nz/file/cQhDwCqa#6bFCV321T9qXZp62pkZlepygYS42UBasc1KOwQyD7kk", "_blank");
   };
 
   return (
