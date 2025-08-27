@@ -37,7 +37,7 @@ export const DATA = {
   ],
   navbar: [
     { href: "/", icon: HomeIcon, label: "Home" },
-    { href: "https://mega.nz/file/cQhDwCqa#6bFCV321T9qXZp62pkZlepygYS42UBasc1KOwQyD7kk", icon: FileTextIcon, label: "Resume" },
+    { href: "/Ishaan_Jamwal_Coop_Resume.pdf", icon: FileTextIcon, label: "Resume" },
   ],
   contact: {
     email: "officialishaanjamwal@gmail.com",

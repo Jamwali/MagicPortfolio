@@ -11,7 +11,7 @@ interface ContactSectionProps {
 
 const ContactSection = ({ delay }: ContactSectionProps) => {
   const handleResumeDownload = () => {
-    window.open("https://mega.nz/file/cQhDwCqa#6bFCV321T9qXZp62pkZlepygYS42UBasc1KOwQyD7kk", "_blank");
+    window.open("/Ishaan_Jamwal_Coop_Resume.pdf", "_blank");
   };
 
   return (
