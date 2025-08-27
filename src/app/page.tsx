@@ -5,6 +5,7 @@ import ContactSection from "@/components/contact-section";
 import BlurFade from "@/components/magicui/blur-fade";
 import BlurFadeText from "@/components/magicui/blur-fade-text";
 import { BoxReveal } from "@/components/magicui/box-reveal";
+import { IconCloud } from "@/components/magicui/icon-cloud";
 import { ProjectCard } from "@/components/project-card";
 import { ResumeCard } from "@/components/resume-card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -104,6 +105,7 @@ export default function Page() {
                   title={education.school}
                   subtitle={education.degree}
                   period={`${education.start} - ${education.end}`}
+                  description={education.description}
                 />
               </BlurFade>
             ))}
@@ -114,13 +116,59 @@ export default function Page() {
             <BlurFade delay={BLUR_FADE_DELAY * 9}>
               <h2 className="text-xl font-bold text-foreground">Skills</h2>
             </BlurFade>
-            <div className="flex flex-wrap gap-1">
-              {DATA.skills.map((skill, id) => (
-                <BlurFade key={skill} delay={BLUR_FADE_DELAY * 10 + id * 0.05}>
-                  <Badge key={skill}>{skill}</Badge>
-                </BlurFade>
-              ))}
-            </div>
+            <BlurFade delay={BLUR_FADE_DELAY * 10}>
+              <div className="flex flex-col items-center justify-center gap-4">
+                <IconCloud 
+                  images={[
+                    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
+                    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg",
+                    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
+                    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg",
+                    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg",
+                    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg",
+                    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/powershell/powershell-original.svg",
+                    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
+                    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg",
+                    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg",
+                    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/intellij/intellij-original.svg",
+                    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pycharm/pycharm-original.svg",
+                    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jupyter/jupyter-original.svg",
+                    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bash/bash-original.svg",
+                    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg",
+                    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg",
+                    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+                    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
+                    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg"
+                  ]}
+                />
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-4xl">
+                  <div className="space-y-2">
+                    <h3 className="font-semibold text-sm text-muted-foreground">Programming Languages</h3>
+                    <div className="flex flex-wrap gap-1">
+                      {["Python", "Java", "JavaScript", "SQL", "HTML", "CSS", "PowerShell"].map((skill) => (
+                        <Badge key={skill} variant="secondary" className="text-xs">{skill}</Badge>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <h3 className="font-semibold text-sm text-muted-foreground">Developer Tools & Platforms</h3>
+                    <div className="flex flex-wrap gap-1">
+                      {["Git", "GitHub", "VS Code", "IntelliJ IDEA", "PyCharm", "Jupyter Notebook", "Bash Scripting", "AWS", "Linux"].map((skill) => (
+                        <Badge key={skill} variant="secondary" className="text-xs">{skill}</Badge>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <h3 className="font-semibold text-sm text-muted-foreground">Frameworks & Technologies</h3>
+                    <div className="flex flex-wrap gap-1">
+                      {["React", "MongoDB", "Figma", "Power Automate", "ServiceNow API"].map((skill) => (
+                        <Badge key={skill} variant="secondary" className="text-xs">{skill}</Badge>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </BlurFade>
           </div>
         </section>
         <section id="projects">
