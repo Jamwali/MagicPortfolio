@@ -75,7 +75,7 @@ export const DATA = {
       start: "Sep 2024",
       end: "Aug 2025",
       description:
-        "• Resolved 100+ 2nd level support tickets monthly across Windows/macOS with 95% SLA resolution rate\n• Automated key support tasks using PowerShell, ServiceNow API, and Power Automate, reducing manual workload by 40%\n• Authored 25+ internal documentation articles, reducing repeat inquiries by 25%",
+        "• Resolved 100+ Windows/macOS support tickets monthly with a 95% SLA, consistently ranking as a top ticket resolver and handling on-call escalations with professionalism for senior staff and Board Members.\n• Collaborated with cross-functional teams and external vendors to proactively resolve issues, improving resolution time by 20% and earning recognition multiple times for strong teamwork and relationship-building.\n• Automated key support tasks using PowerShell, ServiceNow API, and Power Automate, reducing manual workload by 40% and boosting team efficiency.\n• Authored 25+ internal documentation articles, reducing repeat inquiries by 25% and being recognized for clear communication and knowledge sharing.",
     },
     {
       company: "MoMacMo",
@@ -87,7 +87,7 @@ export const DATA = {
       start: "Jun 2023",
       end: "Dec 2023",
       description:
-        "• Deployed geophysical datasets on Microscopium using AWS, enabling graphing of data points to enhance visualization\n• Engineered and deployed Microscopium using Python and Matplotlib with ngrok for online platform transition\n• Achieved 25% increase in processing speed and 35% cost reduction through strategic AWS resource management",
+        "• Deployed geophysical datasets on Microscopium using AWS, enabling the graphing of data points to enhance visualization and simplify the analysis of complex geophysical information.\n• Engineered and deployed Microscopium on AWS using Python and Matplotlib, leveraging ngrok to transition from local development to a fully operational online platform, while optimizing AWS for high-performance computation and fostering innovation.\n• Achieved a 25% increase in processing speed and a 35% cost reduction through strategic AWS resource management, resulting in a 30% improvement in project timelines.",
     },
   ],
   education: [
