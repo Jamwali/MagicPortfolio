@@ -4,7 +4,7 @@ import { HomeIcon, FileTextIcon } from "lucide-react";
 export const DATA = {
   name: "Ishaan Jamwal",
   initials: "IJ",
-  url: "https://aquamarine-kataifi-e281d7.netlify.app",
+  url: "https://funny-hummingbird-689f47.netlify.app",
   location: "Hamilton, ON, Canada",
   locationLink: "https://www.google.com/maps/place/hamilton+ontario",
   description:
@@ -104,7 +104,7 @@ export const DATA = {
   projects: [
     {
       title: "Personal Portfolio",
-      href: "https://aquamarine-kataifi-e281d7.netlify.app/",
+      href: "https://funny-hummingbird-689f47.netlify.app/",
       dates: "2024",
       active: true,
       description:
@@ -119,7 +119,7 @@ export const DATA = {
       links: [
         {
           type: "Website",
-          href: "https://aquamarine-kataifi-e281d7.netlify.app/",
+          href: "https://funny-hummingbird-689f47.netlify.app/",
           icon: <Icons.globe className="size-3" />,
         },
         {
