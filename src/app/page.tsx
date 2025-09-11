@@ -123,21 +123,29 @@ export default function Page() {
                     "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
                     "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg",
                     "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
-                    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg",
+                    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
                     "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg",
                     "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg",
-                    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/powershell/powershell-original.svg",
+                    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bash/bash-original.svg",
                     "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
                     "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg",
                     "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg",
                     "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/intellij/intellij-original.svg",
                     "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pycharm/pycharm-original.svg",
                     "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jupyter/jupyter-original.svg",
-                    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bash/bash-original.svg",
                     "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg",
                     "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg",
+                    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg",
+                    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg",
+                    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg",
+                    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg",
+                    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg",
+                    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg",
                     "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+                    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg",
+                    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
                     "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
+                    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg",
                     "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg"
                   ]}
                 />
@@ -145,7 +153,7 @@ export default function Page() {
                   <div className="space-y-2">
                     <h3 className="font-semibold text-sm text-muted-foreground">Programming Languages</h3>
                     <div className="flex flex-wrap gap-1">
-                      {["Python", "Java", "JavaScript", "SQL", "HTML", "CSS", "PowerShell"].map((skill) => (
+                      {["Python", "Java", "JavaScript", "TypeScript", "SQL", "HTML", "CSS", "PowerShell", "Bash"].map((skill) => (
                         <Badge key={skill} variant="secondary" className="text-xs">{skill}</Badge>
                       ))}
                     </div>
@@ -153,7 +161,7 @@ export default function Page() {
                   <div className="space-y-2">
                     <h3 className="font-semibold text-sm text-muted-foreground">Developer Tools & Platforms</h3>
                     <div className="flex flex-wrap gap-1">
-                      {["Git", "GitHub", "VS Code", "IntelliJ IDEA", "PyCharm", "Jupyter Notebook", "Bash Scripting", "AWS", "Linux"].map((skill) => (
+                      {["Git", "GitHub", "VS Code", "IntelliJ IDEA", "PyCharm", "Jupyter", "Bash Scripting", "AWS", "Linux", "Docker", "Kubernetes", "Homebrew", "ngrok", "Postman", "Jira", "Confluence"].map((skill) => (
                         <Badge key={skill} variant="secondary" className="text-xs">{skill}</Badge>
                       ))}
                     </div>
@@ -161,7 +169,7 @@ export default function Page() {
                   <div className="space-y-2">
                     <h3 className="font-semibold text-sm text-muted-foreground">Frameworks & Technologies</h3>
                     <div className="flex flex-wrap gap-1">
-                      {["React", "MongoDB", "Figma", "Power Automate", "ServiceNow API"].map((skill) => (
+                      {["NumPy", "Pandas", "scikit-learn", "PyTorch", "TensorFlow", "React", "Tailwind CSS", "Node.js", "MongoDB", "PostgreSQL", "Figma", "WorkFlow Automation", "RESTful API"].map((skill) => (
                         <Badge key={skill} variant="secondary" className="text-xs">{skill}</Badge>
                       ))}
                     </div>
