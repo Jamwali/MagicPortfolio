@@ -161,7 +161,7 @@ export default function Page() {
                   <div className="space-y-2">
                     <h3 className="font-semibold text-sm text-muted-foreground">Developer Tools & Platforms</h3>
                     <div className="flex flex-wrap gap-1">
-                      {["Git", "GitHub", "VS Code", "IntelliJ IDEA", "PyCharm", "Jupyter", "Bash Scripting", "AWS", "Linux", "Docker", "Kubernetes", "Homebrew", "ngrok", "Postman", "Jira", "Confluence"].map((skill) => (
+                      {["Git", "GitHub", "VS Code", "IntelliJ IDEA", "PyCharm", "Jupyter", "AWS", "Linux", "Docker", "Kubernetes", "Entra/Azure ID", "Intune", "Homebrew", "ngrok", "Postman", "Jira", "Confluence"].map((skill) => (
                         <Badge key={skill} variant="secondary" className="text-xs">{skill}</Badge>
                       ))}
                     </div>
@@ -169,7 +169,7 @@ export default function Page() {
                   <div className="space-y-2">
                     <h3 className="font-semibold text-sm text-muted-foreground">Frameworks & Technologies</h3>
                     <div className="flex flex-wrap gap-1">
-                      {["NumPy", "Pandas", "scikit-learn", "PyTorch", "TensorFlow", "React", "Tailwind CSS", "Node.js", "MongoDB", "PostgreSQL", "Figma", "WorkFlow Automation", "RESTful API"].map((skill) => (
+                      {["NumPy", "Pandas", "scikit-learn", "PyTorch", "TensorFlow", "React", "Tailwind CSS", "Node.js", "MongoDB", "PostgreSQL", "Figma", "Workflow Automation", "RESTful API"].map((skill) => (
                         <Badge key={skill} variant="secondary" className="text-xs">{skill}</Badge>
                       ))}
                     </div>
