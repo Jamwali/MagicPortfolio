@@ -204,7 +204,7 @@ export default function Page() {
                   name={DATA.projects[0].title}
                   className="col-span-1"
                   background={<div />}
-                  Icon={Icons.react}
+                  Icon={Icons.brain}
                   description={DATA.projects[0].description}
                   href={DATA.projects[0].links?.find((link: any) => link.type === "Website")?.href || DATA.projects[0].href}
                   githubHref={DATA.projects[0].links?.find((link: any) => link.type === "Source")?.href}
@@ -214,7 +214,7 @@ export default function Page() {
                   name={DATA.projects[1].title}
                   className="col-span-1"
                   background={<div />}
-                  Icon={Icons.github}
+                  Icon={Icons.hamilton}
                   description={DATA.projects[1].description}
                   href={DATA.projects[1].links?.find((link: any) => link.type === "Website")?.href || DATA.projects[1].href}
                   githubHref={DATA.projects[1].links?.find((link: any) => link.type === "Source")?.href}

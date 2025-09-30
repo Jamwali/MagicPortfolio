@@ -121,6 +121,47 @@ export const DATA = {
   ],
   projects: [
     {
+      title: "NexDerm - Skin Disease Detection App",
+      href: "",
+      dates: "September 2025 - Present",
+      active: true,
+      logoUrl: "brain",
+      description:
+        "Deep learning CNN model for skin disease classification trained on 15+ GB of dermatology data. Features Node.js backend with REST APIs and Docker containerization for scalable deployment.",
+      technologies: [
+        "EfficientNetV2",
+        "TensorFlow",
+        "Node.js",
+        "Docker",
+        "Deep Learning",
+        "CNN",
+        "REST API",
+      ],
+      links: [],
+      image: "",
+      video: "",
+    },
+    {
+      title: "CityLab - City of Hamilton SharePoint Optimization Project",
+      href: "",
+      dates: "September 2025 - Present",
+      active: true,
+      logoUrl: "hamilton",
+      description:
+        "Redesigned SharePoint Online for City of Hamilton to enhance usability and accessibility. Conducted user research and deployed modern UX-driven layouts with comprehensive documentation.",
+      technologies: [
+        "SharePoint Online",
+        "UX Research",
+        "Human-Centered Design",
+        "User Research",
+        "Workflow Analysis",
+        "Accessibility",
+      ],
+      links: [],
+      image: "",
+      video: "",
+    },
+    {
       title: "Personal Portfolio",
       href: "https://funny-hummingbird-689f47.netlify.app/",
       dates: "2024",
