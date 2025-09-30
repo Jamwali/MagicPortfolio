@@ -1,6 +1,25 @@
 import { Icons } from "@/components/icons";
 import { HomeIcon, FileTextIcon } from "lucide-react";
 
+export interface ProjectLink {
+  type: string;
+  href: string;
+  icon?: React.ReactNode;
+}
+
+export interface Project {
+  title: string;
+  href: string;
+  dates: string;
+  active: boolean;
+  logoUrl?: string;
+  description: string;
+  technologies: string[];
+  links: ProjectLink[];
+  image: string;
+  video: string;
+}
+
 export const DATA = {
   name: "Ishaan Jamwal",
   initials: "IJ",
@@ -137,7 +156,13 @@ export const DATA = {
         "CNN",
         "REST API",
       ],
-      links: [],
+      links: [
+        {
+          type: "Website",
+          href: "",
+          icon: <Icons.globe className="size-3" />,
+        },
+      ],
       image: "",
       video: "",
     },
@@ -157,7 +182,13 @@ export const DATA = {
         "Workflow Analysis",
         "Accessibility",
       ],
-      links: [],
+      links: [
+        {
+          type: "Website",
+          href: "",
+          icon: <Icons.globe className="size-3" />,
+        },
+      ],
       image: "",
       video: "",
     },
