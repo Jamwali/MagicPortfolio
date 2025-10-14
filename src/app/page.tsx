@@ -7,7 +7,7 @@ import BlurFadeText from "@/components/magicui/blur-fade-text";
 import { BoxReveal } from "@/components/magicui/box-reveal";
 import { IconCloud } from "@/components/magicui/icon-cloud";
 import { ProjectCard } from "@/components/project-card";
-import { ResumeCard } from "@/components/resume-card";
+import { ResumeCard } from "@/components/resume-card";import { ProjectLink } from "@/data/resume";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { BentoCard, BentoGrid } from "@/components/magicui/bento-grid";
@@ -204,20 +204,20 @@ export default function Page() {
                   name={DATA.projects[0].title}
                   className="col-span-1"
                   background={<div />}
-                  Icon={Icons.react}
+                  Icon={Icons.brain}
                   description={DATA.projects[0].description}
-                  href={DATA.projects[0].links?.find((link: any) => link.type === "Website")?.href || DATA.projects[0].href}
-                  githubHref={DATA.projects[0].links?.find((link: any) => link.type === "Source")?.href}
+                  href={DATA.projects[0].links?.find((link: ProjectLink) => link.type === "Website")?.href || DATA.projects[0].href}
+                  githubHref={DATA.projects[0].links?.find((link: ProjectLink) => link.type === "Source")?.href}
                   cta="View Project"
                 />
                 <BentoCard
                   name={DATA.projects[1].title}
                   className="col-span-1"
                   background={<div />}
-                  Icon={Icons.github}
+                  Icon={Icons.hamilton}
                   description={DATA.projects[1].description}
-                  href={DATA.projects[1].links?.find((link: any) => link.type === "Website")?.href || DATA.projects[1].href}
-                  githubHref={DATA.projects[1].links?.find((link: any) => link.type === "Source")?.href}
+                  href={DATA.projects[1].links?.find((link: ProjectLink) => link.type === "Website")?.href || DATA.projects[1].href}
+                  githubHref={DATA.projects[1].links?.find((link: ProjectLink) => link.type === "Source")?.href}
                   cta="View Code"
                 />
                 <BentoCard
