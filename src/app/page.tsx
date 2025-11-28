@@ -26,7 +26,7 @@ export default function Page() {
   return (
     <>
       <ScrollProgress />
-      <main className="flex flex-col items-center p-4 relative">
+      <main className="flex flex-col items-start w-full relative">
       <AnimatedGridPattern
         numSquares={200}
         maxOpacity={0.1}
@@ -37,16 +37,16 @@ export default function Page() {
           "inset-x-0 inset-y-0 h-full skew-y-12",
         )}
       />
-      <div className="flex flex-col w-full max-w-2xl gap-y-12">
-        <section id="hero">
-          <div className="flex-col flex flex-1 space-y-1.5">
+      <div className="flex flex-col w-full px-6 sm:px-8 lg:px-16 xl:px-24 gap-y-12 py-8 max-w-7xl mx-auto">
+        <section id="hero" className="py-16 flex items-start">
+          <div className="flex-col flex flex-1 space-y-4 max-w-4xl">
             <BlurFade delay={BLUR_FADE_DELAY}>
-              <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none text-foreground">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tighter text-foreground leading-tight">
                 Hi, I&apos;m <BoxReveal boxColor="#000000" duration={0.5}><span className="inline-block">{DATA.name.split(" ")[0]}</span></BoxReveal> 👋
               </h1>
             </BlurFade>
             <BlurFadeText
-              className="max-w-[600px] md:text-xl text-muted-foreground"
+              className="max-w-3xl text-base sm:text-lg lg:text-xl text-muted-foreground leading-relaxed"
               delay={BLUR_FADE_DELAY}
               text={DATA.description}
             />
@@ -54,18 +54,18 @@ export default function Page() {
         </section>
         <section id="about">
           <BlurFade delay={BLUR_FADE_DELAY * 3}>
-            <h2 className="text-xl font-bold text-foreground">About</h2>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-6">About</h2>
           </BlurFade>
           <BlurFade delay={BLUR_FADE_DELAY * 4}>
-            <Markdown className="prose max-w-full text-pretty font-sans text-sm text-muted-foreground dark:prose-invert">
+            <Markdown className="prose max-w-full text-pretty font-sans text-base lg:text-lg text-muted-foreground dark:prose-invert leading-relaxed">
               {DATA.summary}
             </Markdown>
           </BlurFade>
         </section>
         <section id="work">
-          <div className="flex min-h-0 flex-col gap-y-3">
+          <div className="flex min-h-0 flex-col gap-y-6">
             <BlurFade delay={BLUR_FADE_DELAY * 5}>
-              <h2 className="text-xl font-bold text-foreground">Work Experience</h2>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground">Work Experience</h2>
             </BlurFade>
             {DATA.work.map((work, id) => (
               <BlurFade
@@ -88,9 +88,9 @@ export default function Page() {
           </div>
         </section>
         <section id="education">
-          <div className="flex min-h-0 flex-col gap-y-3">
+          <div className="flex min-h-0 flex-col gap-y-6">
             <BlurFade delay={BLUR_FADE_DELAY * 7}>
-              <h2 className="text-xl font-bold text-foreground">Education</h2>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground">Education</h2>
             </BlurFade>
             {DATA.education.map((education, id) => (
               <BlurFade
@@ -112,9 +112,9 @@ export default function Page() {
           </div>
         </section>
         <section id="skills">
-          <div className="flex min-h-0 flex-col gap-y-3">
+          <div className="flex min-h-0 flex-col gap-y-6">
             <BlurFade delay={BLUR_FADE_DELAY * 9}>
-              <h2 className="text-xl font-bold text-foreground">Skills</h2>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground">Skills</h2>
             </BlurFade>
             <BlurFade delay={BLUR_FADE_DELAY * 10}>
               <div className="flex flex-col items-center justify-center gap-4">
@@ -180,17 +180,17 @@ export default function Page() {
           </div>
         </section>
         <section id="projects">
-          <div className="space-y-8 w-full py-8">
+          <div className="space-y-8 w-full py-12">
             <BlurFade delay={BLUR_FADE_DELAY * 11}>
-              <div className="flex flex-col items-center justify-center space-y-4 text-center">
-                <div className="space-y-2">
+              <div className="flex flex-col items-start justify-start space-y-4">
+                <div className="space-y-4">
                   <div className="inline-block rounded-lg bg-foreground text-background px-3 py-1 text-sm">
                     My Projects
                   </div>
-                  <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-foreground">
+                  <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tighter text-foreground">
                     Check out my latest work
                   </h2>
-                  <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                  <p className="text-muted-foreground text-base lg:text-lg xl:text-xl leading-relaxed max-w-2xl">
                     I&apos;ve worked on a variety of projects, from simple
                     websites to complex web applications. Here are a few of my
                     favorites.
@@ -199,7 +199,7 @@ export default function Page() {
               </div>
             </BlurFade>
             <BlurFade delay={BLUR_FADE_DELAY * 12}>
-              <BentoGrid className="auto-rows-[24rem] grid-cols-1 md:grid-cols-2">
+              <BentoGrid className="auto-rows-[24rem] grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
                 <BentoCard
                   name={DATA.projects[0].title}
                   className="col-span-1"
