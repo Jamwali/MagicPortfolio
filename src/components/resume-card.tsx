@@ -4,6 +4,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardHeader } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
+import { Highlighter } from "@/components/ui/highlighter";
 import { motion } from "framer-motion";
 import { ChevronRightIcon } from "lucide-react";
 import Link from "next/link";
@@ -19,6 +20,65 @@ interface ResumeCardProps {
   period: string;
   description?: string;
 }
+
+// Helper function to parse and highlight metrics
+const highlightMetrics = (text: string): React.ReactNode[] => {
+  const metricsPatterns = [
+    { pattern: "100+ Windows/macOS support tickets", color: "#34c759", action: "highlight" as const },
+    { pattern: "95% SLA", color: "#3b82f6", action: "underline" as const },
+    { pattern: "20%", color: "#a855f7", action: "highlight" as const },
+    { pattern: "40%", color: "#f97316", action: "underline" as const },
+    { pattern: "25+ internal documentation articles", color: "#ec4899", action: "highlight" as const },
+    { pattern: "25%", color: "#0ea5e9", action: "underline" as const },
+    { pattern: "25% increase in processing speed", color: "#34c759", action: "highlight" as const },
+    { pattern: "35% cost reduction", color: "#f97316", action: "underline" as const },
+    { pattern: "30% improvement in project timelines", color: "#a855f7", action: "highlight" as const },
+  ];
+
+  let nodes: React.ReactNode[] = [];
+  let remaining = text;
+  let key = 0;
+
+  while (remaining.length > 0) {
+    let found = false;
+
+    for (const { pattern, color, action } of metricsPatterns) {
+      const index = remaining.indexOf(pattern);
+      if (index === 0) {
+        // Found a match at the start
+        nodes.push(
+          <Highlighter key={key++} color={color} action={action}>
+            {pattern}
+          </Highlighter>
+        );
+        remaining = remaining.substring(pattern.length);
+        found = true;
+        break;
+      }
+    }
+
+    if (!found) {
+      // Find the next metric
+      let nextIndex = remaining.length;
+      for (const { pattern } of metricsPatterns) {
+        const idx = remaining.indexOf(pattern);
+        if (idx !== -1 && idx < nextIndex) {
+          nextIndex = idx;
+        }
+      }
+
+      if (nextIndex > 0) {
+        nodes.push(remaining.substring(0, nextIndex));
+        remaining = remaining.substring(nextIndex);
+      } else {
+        nodes.push(remaining);
+        remaining = "";
+      }
+    }
+  }
+
+  return nodes;
+};
 export const ResumeCard = ({
   logoUrl,
   altText,
@@ -30,6 +90,12 @@ export const ResumeCard = ({
   description,
 }: ResumeCardProps) => {
   const [isExpanded, setIsExpanded] = React.useState(false);
+  
+  // Memoize the highlighted metrics to prevent re-rendering on card state changes
+  const memoizedHighlightedMetrics = React.useMemo(
+    () => (description ? highlightMetrics(description) : null),
+    [description]
+  );
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     if (description) {
@@ -106,7 +172,7 @@ export const ResumeCard = ({
               }}
               className="mt-2 text-xs sm:text-sm whitespace-pre-line"
             >
-              {description}
+              {memoizedHighlightedMetrics}
             </motion.div>
           )}
         </div>
