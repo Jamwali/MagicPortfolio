@@ -27,7 +27,7 @@ export const DATA = {
   location: "Hamilton, ON, Canada",
   locationLink: "https://www.google.com/maps/place/hamilton+ontario",
   description:
-    "Computer Science Co-op Student at McMaster University. Passionate about software development, automation, and solving complex technical challenges.",
+    "Computer Science Co-op Student at McMaster University. Passionate about AI/ML, NLP, automation, and solving complex technical challenges.",
   summary:
     "Currently pursuing a Bachelor of Computer Science Co-op at McMaster University with hands-on experience in technical support, software development, and automation. I've worked at Cooperators as an Associate Technical Support Specialist and interned as a Software Developer at MoMacMo, developing geophysical data visualization tools on AWS. I'm passionate about creating efficient solutions and optimizing processes through automation.",
   avatarUrl: "/me.png",
@@ -158,9 +158,9 @@ export const DATA = {
       ],
       links: [
         {
-          type: "Website",
-          href: "",
-          icon: <Icons.globe className="size-3" />,
+          type: "Source",
+          href: "https://github.com/NexSpend/NexDerm",
+          icon: <Icons.github className="size-3" />,
         },
       ],
       image: "",

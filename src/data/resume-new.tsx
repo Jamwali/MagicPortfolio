@@ -8,7 +8,7 @@ export const DATA = {
   location: "Hamilton, ON, Canada",
   locationLink: "https://www.google.com/maps/place/hamilton+ontario",
   description:
-    "Computer Science Student & Software Developer. Passionate about automation, API development, and full-stack web applications.",
+    "Computer Science Student & Software Developer. Passionate about AI/ML, NLP, automation, and solving complex technical challenges.",
   summary:
     "Fourth-year Computer Science student at McMaster University with co-op experience at The Cooperators. Specialized in automation, API development, and full-stack web applications using modern technologies like Python, JavaScript, and PowerShell. I enjoy building efficient solutions and have experience with API integration, database management, and automation systems.",
   avatarUrl: "/me.png",
