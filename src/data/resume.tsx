@@ -194,7 +194,7 @@ export const DATA = {
     },
     {
       title: "Personal Portfolio",
-      href: "https://funny-hummingbird-689f47.netlify.app/",
+      href: "https://ishaanjamwal.netlify.app/",
       dates: "2024",
       active: true,
       description:
