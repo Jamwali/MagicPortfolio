@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import { Terminal, TypingAnimation, AnimatedSpan } from "@/components/ui/terminal";
 import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -9,8 +8,7 @@ import { cn } from "@/lib/utils";
 const commands: Record<string, string> = {
   whoami: "Ishaan Jamwal - Full Stack Developer & ML Engineer",
   skills: "Python, JavaScript, React, TensorFlow, AWS, Docker...",
-  experience:
-    "Support Specialist @ Cooperators (2024)\nMoMacMo Intern (2023)\nMcMaster University Student (2021-Present)",
+  experience: "Support Specialist @ Cooperators (2024)\nMoMacMo Intern (2023)\nMcMaster University Student (2021-Present)",
   contact: "Email: ishaan@example.com\nGitHub: github.com/Jamwali\nLinkedIn: linkedin.com/in/ishaanjamwal",
   github: "GitHub: https://github.com/Jamwali",
   linkedin: "LinkedIn: https://linkedin.com/in/ishaanjamwal",
@@ -26,9 +24,21 @@ const commands: Record<string, string> = {
 export function DropdownTerminal() {
   const [isOpen, setIsOpen] = useState(false);
   const [input, setInput] = useState("");
+  const [isDesktop, setIsDesktop] = React.useState(true);
   const [history, setHistory] = useState<{ type: "command" | "output"; text: string }[]>([
     { type: "output", text: "Welcome to my portfolio terminal! Type 'help' for commands." },
   ]);
+  const [animatedIndices, setAnimatedIndices] = useState(new Set<number>([0]));
+
+  React.useEffect(() => {
+    const checkIsDesktop = () => {
+      setIsDesktop(window.innerWidth >= 1024);
+    };
+
+    checkIsDesktop();
+    window.addEventListener("resize", checkIsDesktop);
+    return () => window.removeEventListener("resize", checkIsDesktop);
+  }, []);
 
   const handleCommand = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
@@ -42,6 +52,7 @@ export function DropdownTerminal() {
       if (command === "clear") {
         setHistory([]);
         setInput("");
+        setAnimatedIndices(new Set());
         return;
       }
 
@@ -77,6 +88,76 @@ export function DropdownTerminal() {
     }
   };
 
+  const TerminalContent = () => (
+    <div className="border-border bg-background z-0 h-full max-h-[400px] w-full rounded-xl border overflow-y-auto flex flex-col">
+      <div className="border-border flex flex-col gap-y-2 border-b p-4">
+        <div className="flex flex-row gap-x-2">
+          <div className="h-2 w-2 rounded-full bg-red-500"></div>
+          <div className="h-2 w-2 rounded-full bg-yellow-500"></div>
+          <div className="h-2 w-2 rounded-full bg-green-500"></div>
+        </div>
+      </div>
+      <pre className="p-6 flex-1 overflow-auto font-['Fira_Code',monospace] text-sm leading-relaxed">
+        <code className="grid gap-y-1 pl-4">
+          {history.map((item, idx) => {
+            const isNew = !animatedIndices.has(idx);
+            
+            // Mark as animated after animation completes
+            React.useEffect(() => {
+              if (isNew) {
+                const timer = setTimeout(() => {
+                  setAnimatedIndices(prev => new Set(prev).add(idx));
+                }, 400);
+                return () => clearTimeout(timer);
+              }
+            }, [isNew, idx]);
+            
+            return (
+              <motion.div
+                key={idx}
+                initial={isNew ? { opacity: 0, y: 5 } : { opacity: 1, y: 0 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={isNew ? { duration: 0.4 } : { duration: 0 }}
+                className={item.type === "command" ? "text-foreground font-semibold" : "text-muted-foreground whitespace-pre-wrap"}
+              >
+                {item.type === "command" ? (
+                  <>
+                    <span className="text-green-500">&gt; </span>
+                    <span>{item.text}</span>
+                  </>
+                ) : (
+                  <span>{item.text}</span>
+                )}
+              </motion.div>
+            );
+          })}
+          <div className="flex items-center gap-1">
+            <span className="text-green-500">&gt; </span>
+            <input
+              type="text"
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              onKeyDown={handleCommand}
+              placeholder="Type a command..."
+              autoFocus={isDesktop || isOpen}
+              className="bg-transparent outline-none flex-1 text-foreground placeholder-muted-foreground font-['Fira_Code',monospace] text-sm"
+            />
+          </div>
+        </code>
+      </pre>
+    </div>
+  );
+
+  // On desktop, show normally; on mobile, show as dropdown
+  if (isDesktop) {
+    return (
+      <div className="w-full max-w-4xl">
+        <TerminalContent />
+      </div>
+    );
+  }
+
+  // Mobile: show as dropdown
   return (
     <div className="w-full max-w-4xl">
       <button
@@ -107,47 +188,7 @@ export function DropdownTerminal() {
         }}
         className="overflow-hidden"
       >
-        <div className="border-border bg-background z-0 h-full max-h-[400px] w-full rounded-xl border overflow-y-auto flex flex-col">
-          <div className="border-border flex flex-col gap-y-2 border-b p-4">
-            <div className="flex flex-row gap-x-2">
-              <div className="h-2 w-2 rounded-full bg-red-500"></div>
-              <div className="h-2 w-2 rounded-full bg-yellow-500"></div>
-              <div className="h-2 w-2 rounded-full bg-green-500"></div>
-            </div>
-          </div>
-          <pre className="p-6 flex-1 overflow-auto font-['Fira_Code',monospace] text-sm leading-relaxed">
-            <code className="grid gap-y-1 pl-4">
-              {history.map((item, idx) => (
-                <div key={idx} className={item.type === "command" ? "text-foreground font-semibold" : "text-muted-foreground whitespace-pre-wrap"}>
-                  {item.type === "command" ? (
-                    <>
-                      <span className="text-green-500">&gt; </span>
-                      <TypingAnimation duration={20} startOnView={false}>
-                        {item.text}
-                      </TypingAnimation>
-                    </>
-                  ) : (
-                    <TypingAnimation duration={30} startOnView={false} className="text-muted-foreground">
-                      {item.text}
-                    </TypingAnimation>
-                  )}
-                </div>
-              ))}
-              <div className="flex items-center gap-1">
-                <span className="text-green-500">&gt; </span>
-                <input
-                  type="text"
-                  value={input}
-                  onChange={(e) => setInput(e.target.value)}
-                  onKeyDown={handleCommand}
-                  placeholder="Type a command..."
-                  autoFocus={isOpen}
-                  className="bg-transparent outline-none flex-1 text-foreground placeholder-muted-foreground font-['Fira_Code',monospace] text-sm"
-                />
-              </div>
-            </code>
-          </pre>
-        </div>
+        <TerminalContent />
       </motion.div>
     </div>
   );
