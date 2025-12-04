@@ -29,6 +29,7 @@ export function DropdownTerminal() {
     { type: "output", text: "Welcome to my portfolio terminal! Type 'help' for commands." },
   ]);
   const [animatedIndices, setAnimatedIndices] = useState(new Set<number>([0]));
+  const prevLengthRef = React.useRef(1);
 
   React.useEffect(() => {
     const checkIsDesktop = () => {
@@ -39,6 +40,27 @@ export function DropdownTerminal() {
     window.addEventListener("resize", checkIsDesktop);
     return () => window.removeEventListener("resize", checkIsDesktop);
   }, []);
+
+  // Mark new items as animated after they complete
+  React.useEffect(() => {
+    if (history.length > prevLengthRef.current) {
+      const newIndices: number[] = [];
+      for (let i = prevLengthRef.current; i < history.length; i++) {
+        newIndices.push(i);
+      }
+      prevLengthRef.current = history.length;
+
+      const timer = setTimeout(() => {
+        setAnimatedIndices(prev => {
+          const updated = new Set(prev);
+          newIndices.forEach(idx => updated.add(idx));
+          return updated;
+        });
+      }, 400);
+
+      return () => clearTimeout(timer);
+    }
+  }, [history.length]);
 
   const handleCommand = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
@@ -53,6 +75,7 @@ export function DropdownTerminal() {
         setHistory([]);
         setInput("");
         setAnimatedIndices(new Set());
+        prevLengthRef.current = 0;
         return;
       }
 
@@ -101,17 +124,6 @@ export function DropdownTerminal() {
         <code className="grid gap-y-1 pl-4">
           {history.map((item, idx) => {
             const isNew = !animatedIndices.has(idx);
-            
-            // Mark as animated after animation completes
-            React.useEffect(() => {
-              if (isNew) {
-                const timer = setTimeout(() => {
-                  setAnimatedIndices(prev => new Set(prev).add(idx));
-                }, 400);
-                return () => clearTimeout(timer);
-              }
-            }, [isNew, idx]);
-            
             return (
               <motion.div
                 key={idx}
