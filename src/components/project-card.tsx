@@ -6,6 +6,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { ShineBorder } from "@/components/ui/shine-border";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
@@ -41,11 +42,16 @@ export function ProjectCard({
   className,
 }: Props) {
   return (
-    <Card
-      className={
-        "flex flex-col overflow-hidden border hover:shadow-lg transition-all duration-300 ease-out h-full"
-      }
-    >
+    <div className="relative">
+      <Card
+        className={
+          "flex flex-col overflow-hidden border hover:shadow-lg transition-all duration-300 ease-out h-full"
+        }
+      >
+        <ShineBorder 
+          shineColor={["#a855f7", "#ec4899"]}
+          borderWidth={2}
+        />
       <Link
         href={href || "#"}
         className={cn("block cursor-pointer", className)}
@@ -111,6 +117,7 @@ export function ProjectCard({
           </div>
         )}
       </CardFooter>
-    </Card>
+      </Card>
+    </div>
   );
 }

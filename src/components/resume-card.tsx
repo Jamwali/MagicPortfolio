@@ -132,7 +132,7 @@ export const ResumeCard = ({
     >
       <Card className="flex">
         <div className="flex-none">
-          <Avatar className="border size-12 m-auto bg-muted-background dark:bg-foreground">
+          <Avatar className={cn("border m-auto bg-muted-background dark:bg-foreground", altText === "McMaster University" ? "size-10" : "size-12")}>
             <AvatarImage
               src={logoUrl.startsWith('/') ? logoUrl : ''}
               alt={altText}

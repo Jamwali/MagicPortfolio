@@ -1,4 +1,5 @@
 import { Icons } from "@/components/icons";
+import { SizeIcon } from "@radix-ui/react-icons";
 import { HomeIcon, FileTextIcon } from "lucide-react";
 
 export interface ProjectLink {
@@ -108,7 +109,7 @@ export const DATA = {
       badges: ["Co-op", "2nd Level Support"],
       location: "Burlington, ON",
       title: "Associate Technical Support Specialist",
-      logoUrl: "C",
+      logoUrl: "/Co-operators-Emblem.png",
       start: "Sep 2024",
       end: "Aug 2025",
       description:
@@ -120,7 +121,7 @@ export const DATA = {
       badges: ["Internship", "Remote"],
       location: "Houston, TX",
       title: "Software Developer Intern",
-      logoUrl: "M",
+      logoUrl: "/MoMacMo Logo.png",
       start: "Jun 2023",
       end: "Dec 2023",
       description:
@@ -132,7 +133,7 @@ export const DATA = {
       school: "McMaster University",
       href: "#",
       degree: "Bachelor of Computer Science Co-op",
-      logoUrl: "M",
+      logoUrl: "/McMaster-logo.png", 
       start: "Sep 2021",
       end: "Present",
       description: "• Computer Science Co-op program with experience at working at The Co-operators and MoMacMo\n• Core coursework includes Data Structures and Algorithms, Database Systems, Computational Thinking, Logical Reasoning for Computer Science\n• Additional courses: Introduction to Software Development, Software Design Using Web Programming, and Principles of Programming Languages\n• Developing strong foundations in software engineering, problem-solving, and modern programming paradigms",

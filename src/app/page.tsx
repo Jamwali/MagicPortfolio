@@ -12,6 +12,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { BentoCard, BentoGrid } from "@/components/magicui/bento-grid";
 import { ScrollProgress } from "@/components/magicui/scroll-progress";
+import { DropdownTerminal } from "@/components/dropdown-terminal";
 import { DATA } from "@/data/resume";
 import Link from "next/link";
 import Markdown from "react-markdown";
@@ -50,6 +51,9 @@ export default function Page() {
               delay={BLUR_FADE_DELAY}
               text={DATA.description}
             />
+            <BlurFade delay={BLUR_FADE_DELAY * 2}>
+              <DropdownTerminal />
+            </BlurFade>
           </div>
         </section>
         <section id="about">
