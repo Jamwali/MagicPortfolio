@@ -209,7 +209,7 @@ export const DATA = {
       links: [
         {
           type: "Website",
-          href: "https://funny-hummingbird-689f47.netlify.app/",
+          href: "https://ishaanjamwal.netlify.app",
           icon: <Icons.globe className="size-3" />,
         },
         {

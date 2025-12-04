@@ -90,6 +90,7 @@ export const ResumeCard = ({
   description,
 }: ResumeCardProps) => {
   const [isExpanded, setIsExpanded] = React.useState(false);
+  const [isDesktop, setIsDesktop] = React.useState(true);
   
   // Memoize the highlighted metrics to prevent re-rendering on card state changes
   const memoizedHighlightedMetrics = React.useMemo(
@@ -97,10 +98,27 @@ export const ResumeCard = ({
     [description]
   );
 
+  // Detect if we're on desktop on mount and on window resize
+  React.useEffect(() => {
+    const checkIsDesktop = () => {
+      setIsDesktop(window.innerWidth >= 1024); // lg breakpoint
+    };
+
+    checkIsDesktop();
+    window.addEventListener("resize", checkIsDesktop);
+    return () => window.removeEventListener("resize", checkIsDesktop);
+  }, []);
+
+  // On desktop, always show expanded. On mobile, use toggle state
+  const shouldShowDescription = isDesktop || isExpanded;
+
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     if (description) {
       e.preventDefault();
-      setIsExpanded(!isExpanded);
+      // Only allow toggling on mobile
+      if (!isDesktop) {
+        setIsExpanded(!isExpanded);
+      }
     } else if (!href) {
       e.preventDefault();
     }
@@ -135,7 +153,7 @@ export const ResumeCard = ({
                 <ChevronRightIcon
                   className={cn(
                     "size-4 translate-x-0 transform transition-all duration-300 ease-out group-hover:translate-x-1 flex-shrink-0",
-                    description ? "opacity-100" : "opacity-0",
+                    description && !isDesktop ? "opacity-100" : "opacity-0",
                     isExpanded ? "rotate-90" : "rotate-0"
                   )}
                 />
@@ -163,8 +181,8 @@ export const ResumeCard = ({
             <motion.div
               initial={{ opacity: 0, height: 0 }}
               animate={{
-                opacity: isExpanded ? 1 : 0,
-                height: isExpanded ? "auto" : 0,
+                opacity: shouldShowDescription ? 1 : 0,
+                height: shouldShowDescription ? "auto" : 0,
               }}
               transition={{
                 duration: 0.7,
