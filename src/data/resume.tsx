@@ -24,7 +24,7 @@ export interface Project {
 export const DATA = {
   name: "Ishaan Jamwal",
   initials: "IJ",
-  url: "https://funny-hummingbird-689f47.netlify.app",
+  url: "https://ishaanjamwal.netlify.app/",
   location: "Hamilton, ON, Canada",
   locationLink: "https://www.google.com/maps/place/hamilton+ontario",
   description:
@@ -35,6 +35,7 @@ export const DATA = {
   skills: [
     "Python",
     "Java",
+    "C++",
     "JavaScript", 
     "TypeScript",
     "SQL",
