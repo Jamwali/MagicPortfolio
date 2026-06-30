@@ -96,7 +96,7 @@ export const DATA = {
       },
       email: {
         name: "Send Email",
-        url: "mailto:officialishaanjamwal@gmail.com",
+        url: "mailto:jamwalish@gmail.com",
         icon: Icons.email,
         navbar: false,
       },
@@ -109,12 +109,12 @@ export const DATA = {
       href: "https://www.cooperators.ca",
       badges: ["Co-op", "2nd Level Support"],
       location: "Burlington, ON",
-      title: "Associate Technical Support Specialist",
+      title: "Associate Technical Support Analyst",
       logoUrl: "/Co-operators-Emblem.png",
-      start: "Sep 2024",
-      end: "Aug 2025",
+      start: "Sep 2024 - Aug 2025",
+      end: "Jun 2026 - Present",
       description:
-        "• Resolved 100+ Windows/macOS support tickets monthly with a 95% SLA, consistently ranking as a top ticket resolver and handling on-call escalations with professionalism for senior staff and Board Members.\n• Collaborated with cross-functional teams and external vendors to proactively resolve issues, improving resolution time by 20% and earning recognition multiple times for strong teamwork and relationship-building.\n• Automated key support tasks using PowerShell, ServiceNow API, and Power Automate, reducing manual workload by 40% and boosting team efficiency.\n• Authored 25+ internal documentation articles, reducing repeat inquiries by 25% and being recognized for clear communication and knowledge sharing.",
+        "• Resolved 80+ Windows/macOS support tickets monthly with a 95% SLA, consistently ranking as a top ticket resolver and handling on-call escalations with professionalism for senior staff and Board Members.\n• Collaborated with cross-functional teams and external vendors to proactively resolve issues, improving resolution time by 20% and earning recognition multiple times for strong teamwork and relationship-building.\n• Automated key support tasks using PowerShell, ServiceNow API, and Power Automate, reducing manual workload by 40% and boosting team efficiency.\n• Authored 25+ internal documentation articles, reducing repeat inquiries by 25% and being recognized for clear communication and knowledge sharing.",
     },
     {
       company: "MoMacMo",
