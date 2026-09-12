@@ -1,8 +1,9 @@
 "use client";
 
 import { Moon, SunDim } from "lucide-react";
-import { useState, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { flushSync } from "react-dom";
+import { useTheme } from "next-themes";
 import { cn } from "@/lib/utils";
 
 type props = {
@@ -10,18 +11,35 @@ type props = {
 };
 
 export const AnimatedThemeToggler = ({ className }: props) => {
-  const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
+  const { resolvedTheme, setTheme } = useTheme();
   const buttonRef = useRef<HTMLButtonElement | null>(null);
-  
+  const isDark = resolvedTheme === "dark";
+
+  // The theme isn't known until the client mounts. Rendering the resolved
+  // icon straight away makes the server (always Moon) and the client
+  // (SunDim, which contains a <circle>) disagree, which fails hydration for
+  // anyone whose saved theme is dark. Hold the placeholder icon for one
+  // render, then swap.
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+
   const changeTheme = async () => {
     if (!buttonRef.current) return;
+    const next = isDark ? "light" : "dark";
 
-    await document.startViewTransition(() => {
-      flushSync(() => {
-        const dark = document.documentElement.classList.toggle("dark");
-        setIsDarkMode(dark);
-      });
-    }).ready;
+    const applyTheme = () => {
+      flushSync(() => setTheme(next));
+    };
+
+    if (
+      typeof document.startViewTransition !== "function" ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
+      applyTheme();
+      return;
+    }
+
+    await document.startViewTransition(applyTheme).ready;
 
     const { top, left, width, height } =
       buttonRef.current.getBoundingClientRect();
@@ -40,16 +58,21 @@ export const AnimatedThemeToggler = ({ className }: props) => {
         ],
       },
       {
-        duration: 700,
+        duration: 650,
         easing: "ease-in-out",
         pseudoElement: "::view-transition-new(root)",
       },
     );
   };
-  
+
   return (
-    <button ref={buttonRef} onClick={changeTheme} className={cn(className)}>
-      {isDarkMode ? <SunDim /> : <Moon />}
+    <button
+      ref={buttonRef}
+      onClick={changeTheme}
+      aria-label="Toggle theme"
+      className={cn(className)}
+    >
+      {mounted && isDark ? <SunDim /> : <Moon />}
     </button>
   );
 };

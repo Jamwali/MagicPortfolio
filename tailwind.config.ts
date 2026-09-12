@@ -20,7 +20,14 @@ const config = {
     },
     extend: {
       fontFamily: {
-        sans: ["var(--font-sans)", ...fontFamily.sans],
+        sans: [
+          "-apple-system",
+          "BlinkMacSystemFont",
+          '"SF Pro Display"',
+          '"SF Pro Text"',
+          '"Helvetica Neue"',
+          ...fontFamily.sans,
+        ],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -56,6 +63,11 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        field: {
+          DEFAULT: "hsl(var(--field))",
+          foreground: "hsl(var(--field-foreground))",
+        },
+        signal: "hsl(var(--signal))",
       },
       borderRadius: {
         lg: "var(--radius)",

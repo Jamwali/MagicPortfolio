@@ -1,0 +1,77 @@
+"use client";
+
+import { motion, useReducedMotion, useScroll, useTransform, Variants } from "framer-motion";
+import { DATA } from "@/data/resume";
+import { Magnetic } from "@/components/magnetic";
+import { LiveStatus } from "@/components/live-status";
+
+export function HeroIntro() {
+  const reduce = useReducedMotion();
+  const { scrollY } = useScroll();
+  const exitOpacity = useTransform(scrollY, [0, 380], [1, 0]);
+  const exitY = useTransform(scrollY, [0, 380], [0, -50]);
+
+  const item: Variants = {
+    hidden: {
+      opacity: 0,
+      y: reduce ? 0 : 24,
+      filter: reduce ? "blur(0px)" : "blur(10px)",
+    },
+    show: {
+      opacity: 1,
+      y: 0,
+      filter: "blur(0px)",
+      transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] },
+    },
+  };
+
+  return (
+    <motion.div
+      style={reduce ? undefined : { opacity: exitOpacity, y: exitY }}
+      className="w-full"
+    >
+      <motion.div
+        initial="hidden"
+        animate="show"
+        transition={{ staggerChildren: 0.12, delayChildren: 0.05 }}
+      >
+        <motion.h1
+          variants={item}
+          className="max-w-[20ch] text-balance text-[clamp(2.75rem,7vw,5.5rem)] font-semibold leading-[1.03] tracking-[-0.04em]"
+        >
+          I train models and build the systems that run them.
+        </motion.h1>
+
+        <motion.p
+          variants={item}
+          className="mt-8 max-w-[46ch] text-[clamp(1.125rem,1.6vw,1.5rem)] leading-relaxed text-muted-foreground"
+        >
+          {DATA.description}
+        </motion.p>
+
+        <motion.div variants={item} className="mt-10 flex flex-wrap items-center gap-4">
+          <Magnetic className="inline-block">
+            <a
+              href="#projects"
+              className="inline-block rounded-full bg-foreground px-7 py-3.5 text-[15px] font-medium text-background transition-colors duration-300"
+            >
+              See the work
+            </a>
+          </Magnetic>
+          <Magnetic className="inline-block">
+            <a
+              href="#contact"
+              className="inline-block rounded-full border border-black/[0.14] px-7 py-3.5 text-[15px] font-medium text-foreground transition-colors duration-300 hover:border-black/[0.35] dark:border-white/[0.18] dark:hover:border-white/[0.45]"
+            >
+              Get in touch
+            </a>
+          </Magnetic>
+        </motion.div>
+
+        <motion.div variants={item} className="mt-9">
+          <LiveStatus />
+        </motion.div>
+      </motion.div>
+    </motion.div>
+  );
+}

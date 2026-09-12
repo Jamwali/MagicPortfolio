@@ -1,16 +1,12 @@
-import Navbar from "@/components/navbar";
+import { SiteNav } from "@/components/site-nav";
+import { BackgroundGlow } from "@/components/background-glow";
+import { FilmGrain } from "@/components/film-grain";
 import { ThemeProvider } from "@/components/theme-provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { DATA } from "@/data/resume";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
-import { Inter as FontSans } from "next/font/google";
 import "./globals.css";
-
-const fontSans = FontSans({
-  subsets: ["latin"],
-  variable: "--font-sans",
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL(DATA.url),
@@ -57,14 +53,15 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body
         className={cn(
-          "min-h-screen bg-background font-sans antialiased w-full",
-          fontSans.variable
+          "min-h-screen w-full bg-background font-sans antialiased"
         )}
       >
         <ThemeProvider attribute="class" defaultTheme="light">
           <TooltipProvider delayDuration={0}>
-            {children}
-            <Navbar />
+            <BackgroundGlow />
+            <FilmGrain />
+            <SiteNav />
+            <div className="pt-24">{children}</div>
           </TooltipProvider>
         </ThemeProvider>
       </body>
