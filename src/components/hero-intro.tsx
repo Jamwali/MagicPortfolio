@@ -1,10 +1,10 @@
 "use client";
 
+import { ArrowRight } from "lucide-react";
 import { motion, useReducedMotion, useScroll, useTransform, Variants } from "framer-motion";
 import { DATA } from "@/data/resume";
 import { Magnetic } from "@/components/magnetic";
 import { LiveStatus } from "@/components/live-status";
-import { SignalOrbit } from "@/components/signal-orbit";
 
 export function HeroIntro() {
   const reduce = useReducedMotion();
@@ -36,53 +36,48 @@ export function HeroIntro() {
         animate="show"
         transition={{ staggerChildren: 0.12, delayChildren: 0.05 }}
       >
-        <motion.div className="grid items-center gap-12 lg:grid-cols-[1.16fr_0.84fr] lg:gap-16">
-          <div>
-            <motion.p variants={item} className="mb-6 text-[12px] font-semibold uppercase tracking-[0.18em] text-signal">
-              Independent builder · Hamilton, Ontario
-            </motion.p>
-            <motion.h1
-              variants={item}
-              className="max-w-[11ch] text-balance text-[clamp(3.25rem,7.4vw,6.8rem)] font-semibold leading-[0.94] tracking-[-0.065em]"
-            >
-              Intelligence, made human.
-            </motion.h1>
+        <div>
+          <motion.p variants={item} className="mb-6 text-[13px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+            Machine learning · Full-stack · Hamilton, Ontario
+          </motion.p>
+          <motion.h1
+            variants={item}
+            className="max-w-[15ch] text-balance text-[clamp(3rem,8.4vw,7.5rem)] font-semibold leading-[0.95] tracking-[-0.035em] [word-spacing:0.04em]"
+          >
+            Models are easy. Making them useful is the work.
+          </motion.h1>
 
-            <motion.p
-              variants={item}
-              className="mt-8 max-w-[43ch] text-[clamp(1.125rem,1.55vw,1.45rem)] leading-relaxed text-muted-foreground"
-            >
-              I&apos;m Ishaan—an engineer who trains models, designs the systems around them, and cares a little too much about the last 10% of the experience.
-            </motion.p>
+          <motion.p
+            variants={item}
+            className="mt-8 max-w-[46ch] text-[clamp(1.125rem,1.55vw,1.45rem)] leading-relaxed text-muted-foreground"
+          >
+            I&apos;m an engineer who takes ideas from first model to finished experience, building the systems, interfaces, and small details that make people want to use them.
+          </motion.p>
 
-            <motion.div variants={item} className="mt-10 flex flex-wrap items-center gap-4">
+          <motion.div variants={item} className="mt-10 flex flex-wrap items-center gap-4">
               <Magnetic className="inline-block">
                 <a
                   href="#projects"
-                  className="inline-block rounded-full bg-foreground px-7 py-3.5 text-[15px] font-medium text-background transition-all duration-300 hover:scale-[1.03]"
+                  className="inline-flex min-h-[48px] items-center gap-2 rounded-full bg-foreground px-7 text-[15px] font-medium text-background transition-transform duration-300 hover:scale-[1.03]"
                 >
-                  Explore my work&nbsp; →
+                  See what I&apos;ve built
+                  <ArrowRight aria-hidden className="size-4" />
                 </a>
               </Magnetic>
               <Magnetic className="inline-block">
                 <a
                   href="#contact"
-                  className="inline-block rounded-full border border-black/[0.14] px-7 py-3.5 text-[15px] font-medium text-foreground transition-colors duration-300 hover:border-black/[0.35] dark:border-white/[0.18] dark:hover:border-white/[0.45]"
+                  className="inline-flex min-h-[48px] items-center rounded-full border border-[hsl(var(--edge))] bg-secondary px-7 text-[15px] font-medium text-secondary-foreground transition-colors duration-300 hover:border-[hsl(var(--foreground)/0.35)]"
                 >
-                  Let&apos;s build
+                  Say hello
                 </a>
               </Magnetic>
             </motion.div>
 
-            <motion.div variants={item} className="mt-9">
-              <LiveStatus />
-            </motion.div>
-          </div>
-
-          <motion.div variants={item} className="mx-auto w-full max-w-[31rem] lg:justify-self-end">
-            <SignalOrbit />
+          <motion.div variants={item} className="mt-9">
+            <LiveStatus />
           </motion.div>
-        </motion.div>
+        </div>
       </motion.div>
     </motion.div>
   );

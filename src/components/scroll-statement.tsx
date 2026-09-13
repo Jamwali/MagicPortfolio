@@ -4,6 +4,13 @@ import { useRef } from "react";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import type { MotionValue } from "framer-motion";
 
+// Words fade up from this floor rather than from 0.16. The statement is set at
+// 28px and up in semibold, so the ratio that applies is 3:1 (accessibility.md ›
+// Vision), and 0.48 is where foreground-on-background clears it in both
+// appearances — 3.06:1 light, 3.04:1 dark. Below that, most of the sentence was
+// sitting at roughly 1.1:1 at any given scroll position.
+const FLOOR = 0.48;
+
 function Word({
   children,
   range,
@@ -13,7 +20,7 @@ function Word({
   range: [number, number];
   progress: MotionValue<number>;
 }) {
-  const opacity = useTransform(progress, range, [0.16, 1]);
+  const opacity = useTransform(progress, range, [FLOOR, 1]);
   return (
     <motion.span style={{ opacity }} className="mr-[0.28em] inline-block">
       {children}

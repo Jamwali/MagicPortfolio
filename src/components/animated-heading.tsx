@@ -46,6 +46,10 @@ export function AnimatedHeading({
             }}
           >
             {word}
+            {/* A real space, kept out of the visual flow by the mask but
+                present in the accessible name and in copied text — without it
+                a screen reader announces "Thingsbroughttolife". */}
+            <span className="sr-only"> </span>
           </motion.span>
         </span>
       ))}

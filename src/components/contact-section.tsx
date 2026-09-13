@@ -26,23 +26,30 @@ function CopyEmail() {
   }
 
   return (
-    <button
-      onClick={copy}
-      className="group relative text-[15px] font-medium text-signal underline-offset-4"
-    >
-      <span className={copied ? "opacity-0" : "opacity-100"}>
-        {DATA.contact.email}
-      </span>
-      <span
-        aria-live="polite"
-        className={`absolute inset-0 flex items-center justify-center transition-opacity duration-200 ${
-          copied ? "opacity-100" : "opacity-0"
-        }`}
+    <>
+      <button
+        type="button"
+        onClick={copy}
+        aria-label={`Copy email address, ${DATA.contact.email}`}
+        className="link-underline tap-44 inline-flex items-center text-[15px] font-medium text-signal"
       >
-        Copied
+        <span aria-hidden className={copied ? "opacity-0" : "opacity-100"}>
+          {DATA.contact.email}
+        </span>
+        <span
+          aria-hidden
+          className={`absolute inset-x-0 top-1/2 -translate-y-1/2 text-left transition-opacity duration-200 ${
+            copied ? "opacity-100" : "opacity-0"
+          }`}
+        >
+          Copied
+        </span>
+        <span className="link-underline-bar" />
+      </button>
+      <span role="status" aria-live="polite" className="sr-only">
+        {copied ? "Email address copied" : ""}
       </span>
-      <span className="absolute -bottom-0.5 left-0 h-px w-full origin-right scale-x-0 bg-current transition-transform duration-300 ease-out group-hover:origin-left group-hover:scale-x-100" />
-    </button>
+    </>
   );
 }
 
@@ -52,7 +59,7 @@ export default function ContactSection() {
   return (
     <section
       id="contact"
-      className="scroll-mt-24 border-t border-black/[0.1] dark:border-white/[0.14]"
+      className="scroll-mt-24 border-t border-[hsl(var(--rule))]"
     >
       <div className="mx-auto max-w-[1240px] px-6 py-28 md:py-40 lg:px-10">
         <AnimatedHeading
@@ -73,7 +80,7 @@ export default function ContactSection() {
                 href={DATA.contact.social.LinkedIn.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block rounded-full bg-foreground px-7 py-3.5 text-[15px] font-medium text-background"
+                className="inline-flex min-h-[48px] items-center rounded-full bg-foreground px-7 text-[15px] font-medium text-background transition-transform duration-300 hover:scale-[1.03]"
               >
                 Message on LinkedIn
               </Link>
@@ -85,23 +92,23 @@ export default function ContactSection() {
               <Link
                 key={l.label}
                 href={l.href}
-                target={l.href.startsWith("/") ? undefined : "_blank"}
+                target={l.href.startsWith("/") ? "_blank" : "_blank"}
                 rel="noopener noreferrer"
-                className="group relative text-[15px] font-medium text-signal"
+                className="link-underline tap-44 inline-flex items-center text-[15px] font-medium text-signal"
               >
                 {l.label}
-                <span className="absolute -bottom-0.5 left-0 h-px w-full origin-right scale-x-0 bg-current transition-transform duration-300 ease-out group-hover:origin-left group-hover:scale-x-100" />
+                <span className="link-underline-bar" />
               </Link>
             ))}
           </div>
         </Reveal>
       </div>
 
-      <div className="mx-auto max-w-[1240px] border-t border-black/[0.1] px-6 py-8 lg:px-10 dark:border-white/[0.14]">
+      <footer className="mx-auto max-w-[1240px] border-t border-[hsl(var(--rule))] px-6 py-8 lg:px-10">
         <p className="text-[13px] text-muted-foreground">
           © {year} {DATA.name}
         </p>
-      </div>
+      </footer>
     </section>
   );
 }

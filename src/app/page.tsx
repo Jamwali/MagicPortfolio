@@ -1,3 +1,4 @@
+import { ArrowUpRight } from "lucide-react";
 import { HeroIntro } from "@/components/hero-intro";
 import { AnimatedHeading } from "@/components/animated-heading";
 import { Reveal } from "@/components/reveal";
@@ -58,7 +59,7 @@ export default function Page() {
 
       {/* Currently */}
       <section id="about" className="scroll-mt-24">
-        <div className="mx-auto max-w-[1240px] border-t border-black/[0.1] px-6 py-24 md:py-32 lg:px-10 dark:border-white/[0.14]">
+        <div className="mx-auto max-w-[1240px] border-t border-[hsl(var(--rule))] px-6 py-24 md:py-32 lg:px-10">
           <div className="grid gap-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,2fr)] lg:gap-16">
             <div className="lg:sticky lg:top-28 lg:self-start">
               <AnimatedHeading
@@ -70,33 +71,46 @@ export default function Page() {
               </p>
             </div>
 
-            <ul className="grid gap-3">
-              {CURRENTLY.map((row, i) => {
-                const body = (
-                  <div className="grid gap-2 sm:grid-cols-[8rem_1fr] sm:items-baseline sm:gap-8">
-                    <span className="text-[12px] font-medium uppercase tracking-[0.12em] text-muted-foreground">
-                      {row.label}
-                    </span>
-                    <span className="block">
-                      <span className="text-[clamp(1.125rem,1.7vw,1.5rem)] font-semibold leading-snug text-foreground transition-colors duration-300 group-hover:text-signal">
-                        {row.value}
+            {/* One grouped surface with hairline dividers rather than four
+                near-invisible floating cards: the group reads as a single
+                object, and the rows that lead somewhere say so with an arrow
+                instead of relying on a color change alone. */}
+            <Reveal>
+              <ul className="overflow-hidden rounded-[1.5rem] border border-[hsl(var(--edge))] bg-card shadow-[0_1px_2px_hsl(240_20%_10%/0.04),0_12px_32px_hsl(240_20%_10%/0.06)] dark:shadow-none">
+                {CURRENTLY.map((row) => {
+                  const body = (
+                    <div className="grid gap-2 px-5 py-5 sm:grid-cols-[8rem_1fr] sm:items-baseline sm:gap-8 sm:px-7 sm:py-6">
+                      <span className="text-[12px] font-medium uppercase tracking-[0.12em] text-muted-foreground">
+                        {row.label}
                       </span>
-                      <span className="mt-1.5 block text-[15px] leading-snug text-muted-foreground">
-                        {row.detail}
+                      <span className="block">
+                        <span className="text-[clamp(1.125rem,1.7vw,1.5rem)] font-semibold leading-snug text-foreground">
+                          {row.value}
+                          {row.href && (
+                            <ArrowUpRight
+                              aria-hidden
+                              className="ml-1.5 inline size-[0.8em] -translate-y-[0.08em] text-muted-foreground transition-transform duration-300 ease-out group-hover:translate-x-0.5 group-hover:-translate-y-[0.2em] group-hover:text-signal"
+                            />
+                          )}
+                        </span>
+                        <span className="mt-1.5 block text-[15px] leading-snug text-muted-foreground">
+                          {row.detail}
+                        </span>
                       </span>
-                    </span>
-                  </div>
-                );
+                    </div>
+                  );
 
-                return (
-                  <Reveal key={row.label} delay={i * 0.06}>
-                    <li className="group rounded-[1.25rem] border border-black/[0.08] bg-white/60 px-5 py-6 shadow-[0_1px_0_rgba(0,0,0,0.02)] transition-all duration-300 ease-out hover:-translate-y-1 hover:border-black/[0.15] hover:shadow-[0_16px_36px_rgba(18,22,40,0.08)] dark:border-white/[0.11] dark:bg-white/[0.035] dark:hover:border-white/[0.2] dark:hover:shadow-none sm:px-7">
+                  return (
+                    <li
+                      key={row.label}
+                      className="group border-t border-[hsl(var(--rule))] first:border-t-0"
+                    >
                       {row.href ? (
                         <a
                           href={row.href}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="block"
+                          className="block transition-colors duration-200 hover:bg-secondary/70"
                         >
                           {body}
                         </a>
@@ -104,10 +118,10 @@ export default function Page() {
                         body
                       )}
                     </li>
-                  </Reveal>
-                );
-              })}
-            </ul>
+                  );
+                })}
+              </ul>
+            </Reveal>
           </div>
         </div>
       </section>
@@ -117,7 +131,7 @@ export default function Page() {
 
       {/* Experience */}
       <section id="work" className="scroll-mt-24">
-        <div className="mx-auto max-w-[1240px] border-t border-black/[0.1] px-6 py-24 md:py-32 lg:px-10 dark:border-white/[0.14]">
+        <div className="mx-auto max-w-[1240px] border-t border-[hsl(var(--rule))] px-6 py-24 md:py-32 lg:px-10">
           <div className="grid gap-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,2fr)] lg:gap-16">
             <div className="lg:sticky lg:top-28 lg:self-start">
               <AnimatedHeading
@@ -128,7 +142,7 @@ export default function Page() {
             <div>
               {DATA.work.map((job, i) => (
                 <Reveal key={job.company} delay={i * 0.05}>
-                  <article className="border-t border-black/[0.1] py-12 first:border-t-0 first:pt-0 dark:border-white/[0.14]">
+                  <article className="border-t border-[hsl(var(--rule))] py-12 first:border-t-0 first:pt-0">
                     <h3 className="text-[clamp(1.5rem,2.2vw,2rem)] font-semibold tracking-tight">
                       {job.company}
                     </h3>
@@ -138,7 +152,11 @@ export default function Page() {
                     <p className="mt-1 text-[14px] text-muted-foreground">
                       {job.start}
                     </p>
-                    <p className="mt-4 text-[16px] font-medium text-signal">
+                    {/* The accent is the site's link colour; using it for a
+                        static headline number invited clicks on text that
+                        does nothing. The metric keeps its emphasis from a
+                        surface and weight instead. */}
+                    <p className="mt-4 inline-flex rounded-full bg-secondary px-3 py-1.5 text-[15px] font-semibold tracking-tight text-foreground">
                       {job.metric}
                     </p>
                     <ul className="mt-6 space-y-4 text-[clamp(1rem,1.15vw,1.1875rem)] leading-relaxed text-foreground">
@@ -161,7 +179,7 @@ export default function Page() {
 
       {/* Education + Skills */}
       <section id="education" className="scroll-mt-24">
-        <div className="mx-auto max-w-[1240px] border-t border-black/[0.1] px-6 py-24 md:py-32 lg:px-10 dark:border-white/[0.14]">
+        <div className="mx-auto max-w-[1240px] border-t border-[hsl(var(--rule))] px-6 py-24 md:py-32 lg:px-10">
           <div className="grid gap-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,2fr)] lg:gap-16">
             <div className="lg:sticky lg:top-28 lg:self-start">
               <AnimatedHeading
@@ -192,7 +210,7 @@ export default function Page() {
           </div>
 
           <Reveal delay={0.1}>
-            <div className="mt-24 grid gap-12 border-t border-black/[0.1] pt-12 sm:grid-cols-3 dark:border-white/[0.14]">
+            <div className="mt-24 grid gap-12 border-t border-[hsl(var(--rule))] pt-12 sm:grid-cols-3">
               {Object.entries(DATA.skills).map(([group, items]) => (
                 <div key={group}>
                   <h3 className="text-[14px] text-muted-foreground">{group}</h3>
@@ -200,7 +218,7 @@ export default function Page() {
                     {items.map((item) => (
                       <li
                         key={item}
-                        className="cursor-default rounded-full border border-black/[0.09] px-3 py-1 transition-all duration-300 ease-out hover:-translate-y-0.5 hover:border-[hsl(var(--signal)/0.45)] hover:text-signal dark:border-white/[0.12]"
+                        className="rounded-full border border-[hsl(var(--edge))] bg-secondary px-3 py-1.5 text-secondary-foreground"
                       >
                         {item}
                       </li>

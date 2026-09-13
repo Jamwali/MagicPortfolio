@@ -29,7 +29,7 @@ export const DATA = {
   description:
     "Computer science graduate from McMaster University (B.A.Sc., 2026). I work on computer vision, language models, and the production systems behind them.",
   summary:
-    "I'm a Computer Science graduate from McMaster University (B.A.Sc., 2026). I work across the machine-learning stack — training computer-vision and language models, building the full-stack services that serve them, and automating the operational work around them. Recently: a skin-disease classifier trained on 36.7k images, a fully-local RAG chatbot with sub-2s responses, and PowerShell + ServiceNow automation at Cooperators that cut manual processing time by 40%.",
+    "I'm a Computer Science graduate from McMaster University (B.A.Sc., 2026). I work across the machine-learning stack: training computer-vision and language models, building the full-stack services that serve them, and automating the operational work around them. Recently: a skin-disease classifier trained on 36.7k images, a fully-local RAG chatbot with sub-2s responses, and PowerShell + ServiceNow automation at Cooperators that cut manual processing time by 40%.",
   avatarUrl: "/me.png",
   skills: {
     Languages: [
@@ -115,7 +115,7 @@ export const DATA = {
       end: "",
       metric: "40% less manual processing",
       description:
-        "Resolved 80+ Windows and macOS tickets a month in ServiceNow at 95% SLA compliance, ranking among top performers while supporting executive stakeholders.\nRan incident and problem management — troubleshooting and root-cause analysis with cross-functional teams and vendors — cutting resolution time by 20%.\nWrote PowerShell automation against the ServiceNow API to streamline ticket processing, reducing manual processing time by 40%.\nAuthored 25+ knowledge-base articles for self-service troubleshooting, reducing recurring incidents by 25%.",
+        "Resolved 80+ Windows and macOS tickets a month in ServiceNow at 95% SLA compliance, ranking among top performers while supporting executive stakeholders.\nRan incident and problem management, including troubleshooting and root-cause analysis with cross-functional teams and vendors, cutting resolution time by 20%.\nWrote PowerShell automation against the ServiceNow API to streamline ticket processing, reducing manual processing time by 40%.\nAuthored 25+ knowledge-base articles for self-service troubleshooting, reducing recurring incidents by 25%.",
     },
     {
       company: "MoMacMo",
@@ -155,7 +155,7 @@ export const DATA = {
       metricCaption: "dermatology images trained, 80% validation accuracy",
       focus: "Computer vision / full-stack",
       description:
-        "Trained CLIP, DenseNet and ResNet models in PyTorch on McMaster HPC for multi-class skin-disease classification on a 10+ GB dataset, reaching 80% validation accuracy on 36.7k dermatology images. Built the full pipeline — preprocessing, augmentation, hyperparameter tuning, training and evaluation — and a production full-stack app with Node.js and PostgreSQL REST APIs for secure uploads and real-time inference.",
+        "Trained CLIP, DenseNet and ResNet models in PyTorch on McMaster HPC for multi-class skin-disease classification on a 10+ GB dataset, reaching 80% validation accuracy on 36.7k dermatology images. Built the full pipeline (preprocessing, augmentation, hyperparameter tuning, training and evaluation) plus a production full-stack app with Node.js and PostgreSQL REST APIs for secure uploads and real-time inference.",
       technologies: [
         "PyTorch",
         "FastAPI",
@@ -208,7 +208,7 @@ export const DATA = {
       metricCaption: "boosting models benchmarked, tuned with Optuna",
       focus: "ML research / model benchmarking",
       description:
-        "A comparative study of gradient-boosting models — XGBoost, LightGBM and a stacked ensemble — across regression and classification on a US traffic-accident dataset. Hyperparameters were searched with Optuna's TPE sampler, with regularization and class-weight balancing for the imbalanced severity labels; models were scored on accuracy, F1, RMSE and R².",
+        "A comparative study of gradient-boosting models (XGBoost, LightGBM and a stacked ensemble) across regression and classification on a US traffic-accident dataset. Hyperparameters were searched with Optuna's TPE sampler, with regularization and class-weight balancing for the imbalanced severity labels; models were scored on accuracy, F1, RMSE and R².",
       technologies: ["XGBoost", "LightGBM", "Optuna", "scikit-learn", "Pandas"],
       links: [
         {

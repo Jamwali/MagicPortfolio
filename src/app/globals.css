@@ -3,198 +3,312 @@
 @tailwind utilities;
 
 @layer base {
-    :root {
-      --background: 240 20% 99%;
-      --foreground: 240 4% 12%;
+  :root {
+    --background: 240 20% 99%;
+    --foreground: 240 4% 12%;
 
-      --card: 0 0% 100%;
-      --card-foreground: 240 4% 12%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 4% 12%;
 
-      --popover: 0 0% 100%;
-      --popover-foreground: 240 4% 12%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 4% 12%;
 
-      --primary: 240 4% 12%;
-      --primary-foreground: 0 0% 98%;
+    --primary: 240 4% 12%;
+    --primary-foreground: 0 0% 98%;
 
-      --secondary: 240 6% 96%;
-      --secondary-foreground: 240 4% 12%;
+    --secondary: 240 6% 95%;
+    --secondary-foreground: 240 4% 12%;
 
-      --muted: 240 6% 96%;
-      --muted-foreground: 240 3% 44%;
+    --muted: 240 6% 96%;
+    --muted-foreground: 240 3% 44%; /* 5.02:1 on --background */
 
-      --accent: 240 6% 96%;
+    --accent: 240 6% 96%;
     --accent-foreground: 240 4% 12%;
 
-      --destructive: 0 84.2% 60.2%;
-      --destructive-foreground: 0 0% 98%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
 
-      --border: 240 6% 84%;
-      --input: 240 6% 84%;
-      --ring: 214 100% 52%;
+    --border: 240 6% 84%;
+    --input: 240 6% 84%;
+    --ring: 214 100% 45%;
 
-      --radius: 0.75rem;
+    --radius: 0.75rem;
 
-      /* portfolio-specific */
-      --field: 240 6% 7%;
-      --field-foreground: 0 0% 100%;
-      --signal: 214 100% 52%;
-    }
+    /* portfolio-specific */
+    --field: 240 6% 7%;
+    --field-foreground: 0 0% 100%;
+    --signal: 214 100% 45%; /* 5.20:1 on --background — safe for 15px link text */
 
-    .dark {
-      --background: 0 0% 0%;
-      --foreground: 240 20% 96%;
+    /* Hairlines. `rule` separates content, `edge` bounds a surface or control
+       and is the one that has to stay perceivable. */
+    --rule: 0 0% 0% / 0.11;
+    --edge: 0 0% 0% / 0.16;
 
-      --card: 0 0% 4%;
-      --card-foreground: 240 20% 96%;
+    /* Labels on the glass bar. --muted-foreground has only 5.02:1 on the plain
+       page and drops to 1.8:1 once a dark project card scrolls under a
+       translucent bar; this holds 5.07:1 in that worst case, 8.57:1 at rest. */
+    --nav-label: 240 3% 30%;
 
-      --popover: 0 0% 4%;
-      --popover-foreground: 240 20% 96%;
+    /* The floor the scroll-revealed statement fades from. The statement is set
+       at 28px+ semibold, so 3:1 is the applicable ratio; 0.48 lands at 3.06:1. */
+    --statement-floor: 0.48;
+  }
 
-      --primary: 240 20% 96%;
-      --primary-foreground: 0 0% 6%;
+  .dark {
+    --background: 0 0% 0%;
+    --foreground: 240 20% 96%;
 
-      --secondary: 240 4% 12%;
-      --secondary-foreground: 240 20% 96%;
+    --card: 0 0% 7%;
+    --card-foreground: 240 20% 96%;
 
-      --muted: 240 4% 12%;
-      --muted-foreground: 240 5% 60%;
+    --popover: 0 0% 7%;
+    --popover-foreground: 240 20% 96%;
 
-      --accent: 240 4% 12%;
-      --accent-foreground: 240 20% 96%;
+    --primary: 240 20% 96%;
+    --primary-foreground: 0 0% 6%;
 
-      --destructive: 0 62.8% 30.6%;
-      --destructive-foreground: 0 0% 98%;
+    --secondary: 240 4% 14%;
+    --secondary-foreground: 240 20% 96%;
 
-      --border: 240 5% 18%;
-      --input: 240 5% 18%;
-      --ring: 211 100% 62%;
+    --muted: 240 4% 12%;
+    --muted-foreground: 240 5% 60%; /* 6.98:1 on black */
 
-      --field: 240 5% 9%;
-      --field-foreground: 0 0% 100%;
-      --signal: 211 100% 63%;
-    }
-  .theme {
-        --animate-shimmer-slide: shimmer-slide var(--speed) ease-in-out infinite alternate;
-        --animate-spin-around: spin-around calc(var(--speed) * 2) infinite linear;
-        --animate-shine: shine var(--duration) infinite linear;
+    --accent: 240 4% 12%;
+    --accent-foreground: 240 20% 96%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 240 5% 18%;
+    --input: 240 5% 18%;
+    --ring: 211 100% 63%;
+
+    --field: 240 5% 9%;
+    --field-foreground: 0 0% 100%;
+    --signal: 211 100% 63%; /* 7.53:1 on black */
+
+    --rule: 0 0% 100% / 0.14;
+    --edge: 0 0% 100% / 0.22;
+
+    --nav-label: 240 5% 66%; /* 4.97:1 worst case on glass, 8.49:1 at rest */
+
+    --statement-floor: 0.48;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    /* framer-motion measures scroll targets against the scroll container, and
+       a static <html> makes those relative positions unreliable — it warns
+       about exactly this once per scroll-linked element. */
+    position: relative;
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  ::selection {
+    background-color: hsl(var(--signal) / 0.18);
+  }
+  :focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  /* The fallback for browsers without View Transitions: one cross-fade of the
+     page's colours, on a single ease-out curve so it reads as one movement.
+     Browsers that do have View Transitions never get this class — there the
+     circular wipe is the only thing that moves. */
+  @media (prefers-reduced-motion: no-preference) {
+    html.theme-changing * {
+      transition-property: background-color, border-color, color, fill, stroke;
+      transition-duration: 420ms;
+      transition-timing-function: cubic-bezier(0.33, 1, 0.68, 1);
     }
   }
 
-  @layer base {
-    * {
-      @apply border-border;
-    }
+  @media (prefers-reduced-motion: reduce) {
     html {
-      scroll-behavior: smooth;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      text-rendering: optimizeLegibility;
+      scroll-behavior: auto;
     }
-    body {
-      @apply bg-background text-foreground;
-      background-image: radial-gradient(circle at 50% -20%, hsl(225 100% 93% / 0.75), transparent 34rem);
-      background-attachment: fixed;
-    }
-    ::selection {
-      background-color: hsl(211 100% 45% / 0.18);
-    }
-    :focus-visible {
-      outline: 2px solid hsl(var(--ring));
-      outline-offset: 2px;
-    }
-    @media (prefers-reduced-motion: no-preference) {
-      * {
-        transition-property: background-color, border-color, color, fill, stroke;
-        transition-duration: 320ms;
-        transition-timing-function: ease;
-      }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      html {
-        scroll-behavior: auto;
-      }
-      *,
-      *::before,
-      *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-      }
-    }
-    @media (prefers-reduced-transparency: reduce) {
-      .backdrop-blur-xl,
-      .backdrop-blur-md,
-      .backdrop-blur-sm {
-        backdrop-filter: none;
-      }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
     }
   }
 
-  @layer components {
-    .rule-t {
-      @apply border-t border-black/[0.08] dark:border-white/[0.1];
-    }
-    .rule-y {
-      @apply border-y border-black/[0.08] dark:border-white/[0.1];
-    }
-    .divide-rule > * + * {
-      @apply border-t border-black/[0.08] dark:border-white/[0.1];
-    }
+}
+
+@layer components {
+  .rule-t {
+    @apply border-t border-[hsl(var(--rule))];
+  }
+  .rule-y {
+    @apply border-y border-[hsl(var(--rule))];
+  }
+  .divide-rule > * + * {
+    @apply border-t border-[hsl(var(--rule))];
   }
 
-  h3 code {
-    @apply !text-lg md:!text-xl;
+  /* Anything a pointer or finger can hit keeps a 44px-tall reach area without
+     the text itself growing — the inline link keeps its typographic size and
+     the target grows around it. */
+  .tap-44 {
+    @apply relative;
   }
-
-  pre {
-    @apply !px-0 rounded-lg overflow-x-auto py-4
+  .tap-44::after {
+    content: "";
+    position: absolute;
+    inset: 50% 0 auto 0;
+    height: 44px;
+    transform: translateY(-50%);
   }
-
-  pre [data-line] {
-    @apply px-4
-  }
-
-  code {
-    @apply text-sm md:text-base !leading-loose;
-  }
-
-  pre > code {
-    counter-reset: line;
-  }
-
-  code[data-theme*=" "],
-  code[data-theme*=" "] span {
-    color: var(--shiki-light);
-    background-color: var(--shiki-light-bg);
-  }
-
-  @media (prefers-color-scheme: dark) {
-    code[data-theme*=" "],
-    code[data-theme*=" "] span {
-      color: var(--shiki-dark);
-      background-color: var(--shiki-dark-bg);
+  @media (pointer: fine) {
+    .tap-44::after {
+      height: 28px;
     }
   }
 
-  code[data-line-numbers] {
-    counter-reset: line;
+  /* The underline that wipes in from the left on hover, used on every inline
+     link so interactivity is never signalled by color alone. */
+  .link-underline {
+    @apply relative;
+  }
+  .link-underline > .link-underline-bar {
+    @apply absolute -bottom-0.5 left-0 h-px w-full origin-right scale-x-0 bg-current transition-transform duration-300 ease-out;
+  }
+  .link-underline:hover > .link-underline-bar,
+  .link-underline:focus-visible > .link-underline-bar {
+    @apply origin-left scale-x-100;
+  }
+}
+
+@layer components {
+  /* Liquid Glass, regular variant, for the functional layer only.
+     `liquid-glass.md › The two layers`: the material belongs on floating
+     controls and navigation, never on content. On this site that is exactly
+     one surface, the fixed header, plus the menu panel it opens.
+
+     The web translation in `liquid-glass.md › Cross-platform translation`:
+     backdrop blur 20-40px for regular, a 60-80% fill, and a saturation boost
+     of 1.2-1.5 so colour behind the glass stays alive. The saturation is what
+     makes the bar pick up the project cards as they pass beneath it. */
+  .glass {
+    background-color: hsl(var(--background) / 0.78);
+    -webkit-backdrop-filter: blur(24px) saturate(1.4);
+    backdrop-filter: blur(24px) saturate(1.4);
   }
 
-  code[data-line-numbers] > [data-line]::before {
-    counter-increment: line;
-    content: counter(line);
-    @apply inline-block w-4 mr-4 text-right text-gray-500;
+  /* The specular hairline along the material's lower edge. */
+  .glass-edge {
+    background-color: hsl(var(--rule));
   }
 
-  code {
-    counter-reset: line;
+  /* `liquid-glass.md › Review checklist` item 6: content fades where it meets
+     a bar instead of colliding with it. */
+  .glass-scroll-edge {
+    background-image: linear-gradient(
+      to bottom,
+      hsl(var(--background) / 0.55),
+      hsl(var(--background) / 0)
+    );
   }
 
-  code > [data-line]::before {
+  /* Item 5: Reduce Transparency gets an opaque fallback, Increase Contrast
+     gets a stronger fill and border. Browsers with no backdrop-filter fall
+     back the same way. */
+  @supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+    .glass {
+      background-color: hsl(var(--background));
+    }
+  }
+
+  @media (prefers-reduced-transparency: reduce) {
+    .glass {
+      background-color: hsl(var(--background));
+      -webkit-backdrop-filter: none;
+      backdrop-filter: none;
+    }
+    .glass-scroll-edge {
+      background-image: none;
+    }
+  }
+
+  @media (prefers-contrast: more) {
+    .glass {
+      background-color: hsl(var(--background));
+      -webkit-backdrop-filter: none;
+      backdrop-filter: none;
+    }
+    .glass-edge {
+      background-color: hsl(var(--foreground) / 0.45);
+    }
+  }
+}
+
+h3 code {
+  @apply !text-lg md:!text-xl;
+}
+
+/* Tailwind Typography gives `pre` a dark slate background in both appearances,
+   which left the light Shiki theme's tokens at 1.03–3.29:1 on a light page.
+   Put the code block on the theme's own card surface instead: Shiki's light
+   tokens clear 4.60:1 on white, its dark tokens 7.05:1 on #121212. */
+pre {
+  @apply !px-0 overflow-x-auto rounded-xl border border-[hsl(var(--edge))] py-4;
+  background-color: hsl(var(--card)) !important;
+}
+
+pre [data-line] {
+  @apply px-4;
+}
+
+code {
+  @apply text-sm md:text-base !leading-loose;
+  counter-reset: line;
+}
+
+pre > code {
+  counter-reset: line;
+}
+
+/* Shiki emits both themes; pick by the site's own class, not the OS setting,
+   so code blocks follow the theme toggle like everything else does. */
+code[data-theme*=" "],
+code[data-theme*=" "] span {
+  color: var(--shiki-light);
+  background-color: var(--shiki-light-bg);
+}
+
+.dark code[data-theme*=" "],
+.dark code[data-theme*=" "] span {
+  color: var(--shiki-dark);
+  background-color: var(--shiki-dark-bg);
+}
+
+code[data-line-numbers] {
+  counter-reset: line;
+}
+
+code[data-line-numbers] > [data-line]::before {
   counter-increment: line;
   content: counter(line);
+  @apply inline-block w-4 mr-4 text-right text-gray-500;
+}
 
-  /* Other styling */
+code > [data-line]::before {
+  counter-increment: line;
+  content: counter(line);
   display: inline-block;
   width: 1rem;
   margin-right: 2rem;
@@ -210,80 +324,24 @@ code[data-line-numbers-max-digits="3"] > [data-line]::before {
   width: 3rem;
 }
 
-/* Magic UI Animated Theme Toggler CSS */
+/* The theme toggle drives its own circular wipe, and it should be the only
+   thing that moves. The browser's default root animations — a cross-fade on
+   the old and new snapshots, plus a group animation that eases width, height,
+   transform and backdrop-filter — all run alongside it otherwise. */
 ::view-transition-old(root),
-::view-transition-new(root) {
+::view-transition-new(root),
+::view-transition-group(root) {
   animation: none;
   mix-blend-mode: normal;
 }
 
-@theme inline {
-  @keyframes shimmer-slide {
-  to {
-    transform: translate(calc(100cqw - 100%), 0);
-        }
-    }
-  @keyframes spin-around {
-  0% {
-    transform: translateZ(0) rotate(0);
-        }
-  15%, 35% {
-    transform: translateZ(0) rotate(90deg);
-        }
-  65%, 85% {
-    transform: translateZ(0) rotate(270deg);
-        }
-  100% {
-    transform: translateZ(0) rotate(360deg);
-        }
-    }
-  @keyframes shimmer-slide {
-  to {
-    transform: translate(calc(100cqw - 100%), 0);
-        }
-    }
-  @keyframes spin-around {
-  0% {
-    transform: translateZ(0) rotate(0);
-        }
-  15%, 35% {
-    transform: translateZ(0) rotate(90deg);
-        }
-  65%, 85% {
-    transform: translateZ(0) rotate(270deg);
-        }
-  100% {
-    transform: translateZ(0) rotate(360deg);
-        }
-    }
-  @keyframes shimmer-slide {
-  to {
-    transform: translate(calc(100cqw - 100%), 0);
-        }
-    }
-  @keyframes spin-around {
-  0% {
-    transform: translateZ(0) rotate(0);
-        }
-  15%, 35% {
-    transform: translateZ(0) rotate(90deg);
-        }
-  65%, 85% {
-    transform: translateZ(0) rotate(270deg);
-        }
-  100% {
-    transform: translateZ(0) rotate(360deg);
-        }
-    }
-  @keyframes shine {
-  0% {
-    background-position: 0% 0%;
-        }
-  50% {
-    background-position: 100% 100%;
-        }
-  to {
-    background-position: 0% 0%;
-        }
-    }
+/* Every `transition-colors` on the page also fires when the palette changes:
+   sixty-odd elements each easing their own colour over 150–300ms on an
+   ease-in-out curve, underneath a 620ms wipe. That overlap is what read as
+   accelerating, hesitating, then settling. During the wipe the new colours
+   are simply there, and the wipe alone reveals them. */
+html.theme-wipe *,
+html.theme-wipe *::before,
+html.theme-wipe *::after {
+  transition: none !important;
 }

@@ -17,6 +17,7 @@ import { DATA } from "@/data/resume";
 import { AnimatedHeading } from "@/components/animated-heading";
 import { SCENES } from "@/components/project-scenes";
 import { cn } from "@/lib/utils";
+import type React from "react";
 
 type Project = (typeof DATA.projects)[number];
 
@@ -153,6 +154,14 @@ function ProjectPanel({ project, index }: { project: Project; index: number }) {
   const { ink, bright, card, glow: glowColor } = IDENTITY[index % IDENTITY.length];
   const Scene = SCENES[index % SCENES.length];
 
+  // One variable, two values: `ink` is legible on the light page (4.6–6.8:1),
+  // `bright` on the dark one (6.8–12:1). Using `ink` in both appearances left
+  // every project link between 3.0:1 and 4.4:1 in dark mode.
+  const identityVars = {
+    "--project-ink": ink,
+    "--project-ink-dark": bright,
+  } as React.CSSProperties;
+
   const column = useRef<HTMLDivElement>(null);
   const progress = useSceneProgress(column);
 
@@ -174,16 +183,19 @@ function ProjectPanel({ project, index }: { project: Project; index: number }) {
   }
 
   return (
-    <article className="border-t border-black/[0.1] py-14 first:border-t-0 first:pt-8 md:py-16 dark:border-white/[0.14]">
+    <article
+      style={identityVars}
+      className="border-t border-[hsl(var(--rule))] py-14 first:border-t-0 first:pt-8 md:py-16"
+    >
       <div className="mx-auto grid max-w-[1240px] gap-12 px-6 md:grid-cols-2 md:gap-14 lg:gap-20 lg:px-10">
         {/* text — the extra bottom padding on desktop is the scroll distance
             the pinned card gets to play its scene over */}
         <div className={cn("order-2 md:pb-[30vh]", reverse ? "md:order-2" : "md:order-1")}>
           <Rise>
             <div className="flex items-center gap-3">
-              <span className="size-1.5 shrink-0 rounded-full" style={{ backgroundColor: ink }} />
+              <span className="size-1.5 shrink-0 rounded-full bg-[var(--project-ink)] dark:bg-[var(--project-ink-dark)]" />
               <span className="text-sm text-muted-foreground">{num}</span>
-              <span className="h-px flex-1 bg-black/10 dark:bg-white/15" />
+              <span className="h-px flex-1 bg-[hsl(var(--rule))]" />
             </div>
             <h3 className="mt-6 text-[clamp(2.75rem,5.5vw,4.75rem)] font-semibold leading-[1.02] tracking-[-0.035em]">
               {project.title}
@@ -200,7 +212,7 @@ function ProjectPanel({ project, index }: { project: Project; index: number }) {
           </Rise>
 
           <Rise delay={0.14}>
-            <dl className="mt-10 max-w-[34rem] border-b border-black/[0.1] dark:border-white/[0.14]">
+            <dl className="mt-10 max-w-[34rem] border-b border-[hsl(var(--rule))]">
               {[
                 ["Focus", project.focus],
                 ["Stack", project.technologies.slice(0, 4).join(", ")],
@@ -208,7 +220,7 @@ function ProjectPanel({ project, index }: { project: Project; index: number }) {
               ].map(([label, value]) => (
                 <div
                   key={label}
-                  className="grid grid-cols-[6rem_1fr] gap-5 border-t border-black/[0.1] py-3.5 dark:border-white/[0.14]"
+                  className="grid grid-cols-[6rem_1fr] gap-5 border-t border-[hsl(var(--rule))] py-3.5"
                 >
                   <dt className="text-[14px] text-muted-foreground">{label}</dt>
                   <dd className="text-[14px] text-foreground">{value}</dd>
@@ -226,11 +238,10 @@ function ProjectPanel({ project, index }: { project: Project; index: number }) {
                     href={l.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group relative text-[15px] font-medium"
-                    style={{ color: ink }}
+                    className="link-underline tap-44 inline-flex items-center text-[15px] font-medium text-[var(--project-ink)] dark:text-[var(--project-ink-dark)]"
                   >
                     {linkLabel(l.type)}
-                    <span className="absolute -bottom-0.5 left-0 h-px w-full origin-right scale-x-0 bg-current transition-transform duration-300 ease-out group-hover:origin-left group-hover:scale-x-100" />
+                    <span className="link-underline-bar" />
                   </Link>
                 ))}
               </div>
@@ -239,7 +250,10 @@ function ProjectPanel({ project, index }: { project: Project; index: number }) {
         </div>
 
         {/* the project's scene, drawn as you scroll, on a card unique to it */}
-        <div ref={column} className={cn("order-1", reverse ? "md:order-1" : "md:order-2")}>
+        <div
+          ref={column}
+          className={cn("relative order-1", reverse ? "md:order-1" : "md:order-2")}
+        >
           <Rise
             delay={0.1}
             onMouseMove={handleCardMove}
@@ -252,7 +266,7 @@ function ProjectPanel({ project, index }: { project: Project; index: number }) {
               style={{ background: glow }}
             />
 
-            <div className="relative flex items-center justify-between text-[13px] text-white/35">
+            <div className="relative flex items-center justify-between text-[13px] text-white/60">
               <span>
                 {num} / {String(featured.length).padStart(2, "0")}
               </span>
@@ -272,7 +286,7 @@ function ProjectPanel({ project, index }: { project: Project; index: number }) {
               >
                 <CountUp {...project.metric} />
               </p>
-              <p className="max-w-[22ch] text-[14px] leading-snug text-white/55 sm:text-right">
+              <p className="max-w-[22ch] text-[14px] leading-snug text-white/70 sm:text-right">
                 {project.metricCaption}
               </p>
             </div>
@@ -286,14 +300,14 @@ function ProjectPanel({ project, index }: { project: Project; index: number }) {
 export function Projects() {
   return (
     <section id="projects" className="scroll-mt-24">
-      <div className="mx-auto max-w-[1240px] border-t border-black/[0.1] px-6 pb-4 pt-24 md:pt-32 lg:px-10 dark:border-white/[0.14]">
+      <div className="mx-auto max-w-[1240px] border-t border-[hsl(var(--rule))] px-6 pb-4 pt-24 md:pt-32 lg:px-10">
         <AnimatedHeading
           text="Things I&apos;ve brought to life."
           className="text-[clamp(2.5rem,5vw,4rem)] font-semibold tracking-[-0.035em]"
         />
         <Rise delay={0.15}>
           <p className="mt-5 max-w-[48ch] text-[clamp(1.0625rem,1.2vw,1.3rem)] leading-relaxed text-muted-foreground">
-            A few proof points from the past year—computer vision, local LLMs,
+            A few proof points from the past year: computer vision, local LLMs,
             model research, and a digital home for a city team.
           </p>
         </Rise>
@@ -309,10 +323,10 @@ export function Projects() {
         <Rise>
           <h3 className="text-[15px] text-muted-foreground">Also built</h3>
         </Rise>
-        <ul className="mt-6 border-t border-black/[0.1] dark:border-white/[0.14]">
+        <ul className="mt-6 border-t border-[hsl(var(--rule))]">
           {DATA.alsoBuilt.map((item, i) => (
             <Rise key={item.title} delay={i * 0.05}>
-              <li className="flex flex-col gap-1.5 border-b border-black/[0.1] py-6 sm:flex-row sm:items-baseline sm:justify-between sm:gap-10 dark:border-white/[0.14]">
+              <li className="flex flex-col gap-1.5 border-b border-[hsl(var(--rule))] py-6 sm:flex-row sm:items-baseline sm:justify-between sm:gap-10">
                 <div className="sm:flex sm:items-baseline sm:gap-5">
                   <span className="text-[17px] font-medium text-foreground">{item.title}</span>
                   <span className="text-[15px] text-muted-foreground">
@@ -323,10 +337,11 @@ export function Projects() {
                   href={item.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group relative shrink-0 text-[15px] text-signal"
+                  aria-label={`View source for ${item.title}`}
+                  className="link-underline tap-44 inline-flex shrink-0 items-center self-start text-[15px] text-signal"
                 >
                   View source
-                  <span className="absolute -bottom-0.5 left-0 h-px w-full origin-right scale-x-0 bg-current transition-transform duration-300 ease-out group-hover:origin-left group-hover:scale-x-100" />
+                  <span className="link-underline-bar" />
                 </Link>
               </li>
             </Rise>

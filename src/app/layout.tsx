@@ -1,5 +1,4 @@
 import { SiteNav } from "@/components/site-nav";
-import { BackgroundGlow } from "@/components/background-glow";
 import { FilmGrain } from "@/components/film-grain";
 import { ThemeProvider } from "@/components/theme-provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -56,12 +55,19 @@ export default function RootLayout({
           "min-h-screen w-full bg-background font-sans antialiased"
         )}
       >
-        <ThemeProvider attribute="class" defaultTheme="light">
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <TooltipProvider delayDuration={0}>
-            <BackgroundGlow />
+            <a
+              href="#main"
+              className="sr-only focus-visible:not-sr-only focus-visible:fixed focus-visible:left-4 focus-visible:top-4 focus-visible:z-[60] focus-visible:rounded-full focus-visible:bg-foreground focus-visible:px-5 focus-visible:py-3 focus-visible:text-[15px] focus-visible:font-medium focus-visible:text-background"
+            >
+              Skip to content
+            </a>
             <FilmGrain />
             <SiteNav />
-            <div className="pt-24">{children}</div>
+            <div id="main" className="pt-24">
+              {children}
+            </div>
           </TooltipProvider>
         </ThemeProvider>
       </body>

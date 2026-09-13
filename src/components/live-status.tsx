@@ -27,14 +27,14 @@ export function LiveStatus() {
 
   return (
     <div className="flex items-center gap-3 text-[14px] text-muted-foreground">
-      <span className="relative flex size-2 shrink-0">
+      <span aria-hidden className="relative flex size-2 shrink-0">
         <span className="absolute inline-flex size-full animate-ping rounded-full bg-emerald-500 opacity-70" />
         <span className="relative inline-flex size-2 rounded-full bg-emerald-500" />
       </span>
       <span className="text-foreground">Open to roles</span>
       {time && (
         <>
-          <span className="h-3 w-px bg-black/15 dark:bg-white/20" />
+          <span className="h-3 w-px bg-[hsl(var(--edge))]" />
           <span>{time} in Hamilton</span>
         </>
       )}

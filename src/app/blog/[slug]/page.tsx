@@ -1,3 +1,5 @@
+import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
 import { getBlogPosts, getPost } from "@/data/blog";
 import { DATA } from "@/data/resume";
 import { formatDate } from "@/lib/utils";
@@ -65,7 +67,7 @@ export default async function Blog({
   }
 
   return (
-    <section id="blog">
+    <main className="mx-auto max-w-[1240px] px-6 py-16 md:py-24 lg:px-10">
       <script
         type="application/ld+json"
         suppressHydrationWarning
@@ -88,20 +90,32 @@ export default async function Blog({
           }),
         }}
       />
-      <h1 className="title font-medium text-2xl tracking-tighter max-w-[650px]">
-        {post.metadata.title}
-      </h1>
-      <div className="flex justify-between items-center mt-2 mb-8 text-sm max-w-[650px]">
-        <Suspense fallback={<p className="h-5" />}>
-          <p className="text-sm text-neutral-600 dark:text-neutral-400">
+
+      {/* An article people arrive at from search needs its own way back into
+          the site, not just the browser's. */}
+      <Link
+        href="/blog"
+        className="inline-flex min-h-[44px] items-center gap-2 text-[15px] text-muted-foreground transition-colors hover:text-foreground"
+      >
+        <ArrowLeft aria-hidden className="size-4" />
+        All writing
+      </Link>
+
+      <article className="mt-8 max-w-[68ch]">
+        <h1 className="text-[clamp(2.25rem,4.5vw,3.5rem)] font-semibold leading-[1.05] tracking-[-0.035em]">
+          {post.metadata.title}
+        </h1>
+        <Suspense fallback={<p className="mt-4 h-6" />}>
+          <p className="mt-4 text-[15px] text-muted-foreground">
             {formatDate(post.metadata.publishedAt)}
           </p>
         </Suspense>
-      </div>
-      <article
-        className="prose dark:prose-invert"
-        dangerouslySetInnerHTML={{ __html: post.source }}
-      ></article>
-    </section>
+
+        <div
+          className="prose prose-neutral mt-12 max-w-none border-t border-[hsl(var(--rule))] pt-12 text-[17px] leading-relaxed dark:prose-invert prose-headings:tracking-tight prose-a:text-signal prose-a:underline-offset-4"
+          dangerouslySetInnerHTML={{ __html: post.source }}
+        />
+      </article>
+    </main>
   );
 }
