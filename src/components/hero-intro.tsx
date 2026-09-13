@@ -4,6 +4,7 @@ import { motion, useReducedMotion, useScroll, useTransform, Variants } from "fra
 import { DATA } from "@/data/resume";
 import { Magnetic } from "@/components/magnetic";
 import { LiveStatus } from "@/components/live-status";
+import { SignalOrbit } from "@/components/signal-orbit";
 
 export function HeroIntro() {
   const reduce = useReducedMotion();
@@ -35,41 +36,52 @@ export function HeroIntro() {
         animate="show"
         transition={{ staggerChildren: 0.12, delayChildren: 0.05 }}
       >
-        <motion.h1
-          variants={item}
-          className="max-w-[20ch] text-balance text-[clamp(2.75rem,7vw,5.5rem)] font-semibold leading-[1.03] tracking-[-0.04em]"
-        >
-          I train models and build the systems that run them.
-        </motion.h1>
-
-        <motion.p
-          variants={item}
-          className="mt-8 max-w-[46ch] text-[clamp(1.125rem,1.6vw,1.5rem)] leading-relaxed text-muted-foreground"
-        >
-          {DATA.description}
-        </motion.p>
-
-        <motion.div variants={item} className="mt-10 flex flex-wrap items-center gap-4">
-          <Magnetic className="inline-block">
-            <a
-              href="#projects"
-              className="inline-block rounded-full bg-foreground px-7 py-3.5 text-[15px] font-medium text-background transition-colors duration-300"
+        <motion.div className="grid items-center gap-12 lg:grid-cols-[1.16fr_0.84fr] lg:gap-16">
+          <div>
+            <motion.p variants={item} className="mb-6 text-[12px] font-semibold uppercase tracking-[0.18em] text-signal">
+              Independent builder · Hamilton, Ontario
+            </motion.p>
+            <motion.h1
+              variants={item}
+              className="max-w-[11ch] text-balance text-[clamp(3.25rem,7.4vw,6.8rem)] font-semibold leading-[0.94] tracking-[-0.065em]"
             >
-              See the work
-            </a>
-          </Magnetic>
-          <Magnetic className="inline-block">
-            <a
-              href="#contact"
-              className="inline-block rounded-full border border-black/[0.14] px-7 py-3.5 text-[15px] font-medium text-foreground transition-colors duration-300 hover:border-black/[0.35] dark:border-white/[0.18] dark:hover:border-white/[0.45]"
-            >
-              Get in touch
-            </a>
-          </Magnetic>
-        </motion.div>
+              Intelligence, made human.
+            </motion.h1>
 
-        <motion.div variants={item} className="mt-9">
-          <LiveStatus />
+            <motion.p
+              variants={item}
+              className="mt-8 max-w-[43ch] text-[clamp(1.125rem,1.55vw,1.45rem)] leading-relaxed text-muted-foreground"
+            >
+              I&apos;m Ishaan—an engineer who trains models, designs the systems around them, and cares a little too much about the last 10% of the experience.
+            </motion.p>
+
+            <motion.div variants={item} className="mt-10 flex flex-wrap items-center gap-4">
+              <Magnetic className="inline-block">
+                <a
+                  href="#projects"
+                  className="inline-block rounded-full bg-foreground px-7 py-3.5 text-[15px] font-medium text-background transition-all duration-300 hover:scale-[1.03]"
+                >
+                  Explore my work&nbsp; →
+                </a>
+              </Magnetic>
+              <Magnetic className="inline-block">
+                <a
+                  href="#contact"
+                  className="inline-block rounded-full border border-black/[0.14] px-7 py-3.5 text-[15px] font-medium text-foreground transition-colors duration-300 hover:border-black/[0.35] dark:border-white/[0.18] dark:hover:border-white/[0.45]"
+                >
+                  Let&apos;s build
+                </a>
+              </Magnetic>
+            </motion.div>
+
+            <motion.div variants={item} className="mt-9">
+              <LiveStatus />
+            </motion.div>
+          </div>
+
+          <motion.div variants={item} className="mx-auto w-full max-w-[31rem] lg:justify-self-end">
+            <SignalOrbit />
+          </motion.div>
         </motion.div>
       </motion.div>
     </motion.div>

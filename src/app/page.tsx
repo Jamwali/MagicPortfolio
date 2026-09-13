@@ -52,7 +52,7 @@ export default function Page() {
   return (
     <main className="w-full">
       {/* Hero */}
-      <section className="mx-auto flex min-h-[82svh] max-w-[1240px] items-center px-6 py-24 lg:px-10">
+      <section className="mx-auto flex min-h-[calc(100svh-6rem)] max-w-[1240px] items-center px-6 py-16 lg:px-10">
         <HeroIntro />
       </section>
 
@@ -62,20 +62,23 @@ export default function Page() {
           <div className="grid gap-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,2fr)] lg:gap-16">
             <div className="lg:sticky lg:top-28 lg:self-start">
               <AnimatedHeading
-                text="Currently"
+                text="In motion."
                 className="text-[clamp(2.5rem,5vw,4rem)] font-semibold tracking-[-0.035em]"
               />
+              <p className="mt-4 max-w-[24ch] text-[16px] leading-relaxed text-muted-foreground">
+                The short version of what I&apos;m making, learning, and looking forward to.
+              </p>
             </div>
 
-            <ul className="border-t border-black/[0.1] dark:border-white/[0.14]">
+            <ul className="grid gap-3">
               {CURRENTLY.map((row, i) => {
                 const body = (
                   <div className="grid gap-2 sm:grid-cols-[8rem_1fr] sm:items-baseline sm:gap-8">
-                    <span className="text-[14px] text-muted-foreground">
+                    <span className="text-[12px] font-medium uppercase tracking-[0.12em] text-muted-foreground">
                       {row.label}
                     </span>
                     <span className="block">
-                      <span className="text-[clamp(1.125rem,1.7vw,1.5rem)] font-medium leading-snug text-foreground transition-colors duration-300 group-hover:text-signal">
+                      <span className="text-[clamp(1.125rem,1.7vw,1.5rem)] font-semibold leading-snug text-foreground transition-colors duration-300 group-hover:text-signal">
                         {row.value}
                       </span>
                       <span className="mt-1.5 block text-[15px] leading-snug text-muted-foreground">
@@ -87,7 +90,7 @@ export default function Page() {
 
                 return (
                   <Reveal key={row.label} delay={i * 0.06}>
-                    <li className="group border-b border-black/[0.1] py-7 transition-transform duration-300 ease-out hover:translate-x-1.5 dark:border-white/[0.14]">
+                    <li className="group rounded-[1.25rem] border border-black/[0.08] bg-white/60 px-5 py-6 shadow-[0_1px_0_rgba(0,0,0,0.02)] transition-all duration-300 ease-out hover:-translate-y-1 hover:border-black/[0.15] hover:shadow-[0_16px_36px_rgba(18,22,40,0.08)] dark:border-white/[0.11] dark:bg-white/[0.035] dark:hover:border-white/[0.2] dark:hover:shadow-none sm:px-7">
                       {row.href ? (
                         <a
                           href={row.href}

@@ -14,7 +14,7 @@ const sections = [
 
 export function SiteNav() {
   const { scrollY } = useScroll();
-  const height = useTransform(scrollY, [0, 140], [96, 72]);
+  const height = useTransform(scrollY, [0, 140], [88, 64]);
   const bgOpacity = useTransform(scrollY, [0, 90], [0, 1]);
   const nameScale = useTransform(scrollY, [0, 140], [1, 0.88]);
 
@@ -28,13 +28,20 @@ export function SiteNav() {
         className="absolute inset-0 border-b border-black/[0.08] bg-background/75 backdrop-blur-xl dark:border-white/[0.1]"
       />
 
-      <nav className="relative mx-auto grid w-full max-w-[1240px] grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-4 px-6 lg:px-10">
-        <ul className="col-start-1 hidden items-center gap-7 sm:flex">
+      <nav className="relative mx-auto flex w-full max-w-[1240px] items-center justify-between gap-4 px-6 lg:px-10">
+        <Link href="/" className="flex items-center gap-2.5">
+          <span className="grid size-7 place-items-center rounded-full bg-foreground text-[10px] font-bold tracking-[-0.1em] text-background">IJ</span>
+          <motion.span style={{ scale: nameScale }} className="text-[15px] font-semibold tracking-tight sm:text-[16px]">
+            {DATA.name}
+          </motion.span>
+        </Link>
+
+        <ul className="hidden items-center rounded-full border border-black/[0.08] bg-background/65 px-4 py-2 shadow-sm backdrop-blur-md sm:flex sm:gap-5 dark:border-white/[0.1]">
           {sections.map((s) => (
             <li key={s.href}>
               <Link
                 href={s.href}
-                className="text-[14px] text-muted-foreground transition-colors hover:text-foreground"
+                className="text-[13px] text-muted-foreground transition-colors hover:text-foreground"
               >
                 {s.label}
               </Link>
@@ -42,16 +49,7 @@ export function SiteNav() {
           ))}
         </ul>
 
-        <Link href="/" className="col-start-2 justify-self-center">
-          <motion.span
-            style={{ scale: nameScale }}
-            className="block text-[22px] font-semibold tracking-tight sm:text-[26px]"
-          >
-            {DATA.name}
-          </motion.span>
-        </Link>
-
-        <div className="col-start-3 flex items-center justify-end gap-6">
+        <div className="flex items-center justify-end gap-4 sm:gap-5">
           <Link
             href="/Ishaan_Jamwal_Coop_Resume.pdf"
             target="_blank"

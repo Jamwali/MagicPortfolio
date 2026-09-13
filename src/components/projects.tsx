@@ -288,14 +288,13 @@ export function Projects() {
     <section id="projects" className="scroll-mt-24">
       <div className="mx-auto max-w-[1240px] border-t border-black/[0.1] px-6 pb-4 pt-24 md:pt-32 lg:px-10 dark:border-white/[0.14]">
         <AnimatedHeading
-          text="Selected work"
+          text="Things I&apos;ve brought to life."
           className="text-[clamp(2.5rem,5vw,4rem)] font-semibold tracking-[-0.035em]"
         />
         <Rise delay={0.15}>
           <p className="mt-5 max-w-[48ch] text-[clamp(1.0625rem,1.2vw,1.3rem)] leading-relaxed text-muted-foreground">
-            Four projects from the past year — trained models, a retrieval
-            system, a gradient-boosting benchmark, and a research-led redesign
-            for a city.
+            A few proof points from the past year—computer vision, local LLMs,
+            model research, and a digital home for a city team.
           </p>
         </Rise>
       </div>
