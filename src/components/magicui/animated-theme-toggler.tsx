@@ -78,11 +78,10 @@ export const AnimatedThemeToggler = ({ className }: props) => {
         ],
       },
       {
-        duration: 620,
-        // easeOutCubic: one continuous deceleration from start to finish. The
-        // previous curve was an expo-out, which covers most of the distance
-        // almost immediately and then crawls through a long tail.
-        easing: "cubic-bezier(0.33, 1, 0.68, 1)",
+        // A single constant-speed pass — no acceleration, deceleration, or
+        // secondary opacity animation competing with the radial reveal.
+        duration: 560,
+        easing: "linear",
         pseudoElement: "::view-transition-new(root)",
       },
     );

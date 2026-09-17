@@ -123,14 +123,14 @@
   }
 
   /* The fallback for browsers without View Transitions: one cross-fade of the
-     page's colours, on a single ease-out curve so it reads as one movement.
+     page's colours, at a constant rate so it reads as one movement.
      Browsers that do have View Transitions never get this class — there the
      circular wipe is the only thing that moves. */
   @media (prefers-reduced-motion: no-preference) {
     html.theme-changing * {
       transition-property: background-color, border-color, color, fill, stroke;
       transition-duration: 420ms;
-      transition-timing-function: cubic-bezier(0.33, 1, 0.68, 1);
+      transition-timing-function: linear;
     }
   }
 
