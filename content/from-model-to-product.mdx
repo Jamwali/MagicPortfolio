@@ -1,0 +1,37 @@
+---
+title: "From model checkpoint to useful product"
+publishedAt: "2026-09-12"
+summary: "What NexDerm taught me about treating data, inference, APIs, and interface as one system."
+---
+
+An ML project can look finished long before it is useful. A model trains, a validation number appears, and a notebook produces a convincing example. But a person cannot use a checkpoint. They need a reliable path from an input to an understandable result.
+
+NexDerm made that gap concrete. The project involved a 10+ GB dermatology dataset, 36.7k images, multiple model families, and an application that had to carry an upload through inference and back to the interface.
+
+## Start with a repeatable experiment
+
+I compared CLIP, DenseNet, and ResNet rather than treating architecture choice as a foregone conclusion. More importantly, preprocessing, augmentation, hyperparameter tuning, training, and evaluation belonged to one pipeline.
+
+That matters because an experiment is only informative when I can explain what changed between runs. A strong result produced by an irreproducible path is difficult to trust and harder to improve.
+
+## The boundary is where systems fail
+
+The model is one component. Around it sit several boundaries:
+
+1. A user supplies an image.
+2. The service validates and prepares it consistently.
+3. The model performs inference.
+4. The API returns a structured result.
+5. The interface presents that result without overstating it.
+
+Each handoff can fail independently. Thinking in boundaries changed the questions I asked. What format does the model really expect? What should the API return when an upload is invalid? What information does the interface need beyond a class label?
+
+The production work—secure uploads, REST APIs, persistence, and real-time inference—was not packaging added after the “real” ML work. It was part of making the model testable as a product.
+
+## Accuracy needs a sentence after it
+
+The resulting model reached 80% validation accuracy. That is a useful project result, but it is not clinical validation. It does not establish performance across every class, skin tone, capture condition, or real-world population.
+
+The more interesting next step is not simply chasing a larger headline number. I would begin with class-level error analysis and subgroup evaluation, then add calibrated confidence and a specialist review process.
+
+The lesson I am carrying forward is simple: a model metric is the beginning of a product conversation, not the end of one.

@@ -1,0 +1,34 @@
+---
+title: "A local RAG pipeline that stays conversational"
+publishedAt: "2026-09-05"
+summary: "How retrieval, local inference, and a latency budget shaped an offline question-answering system."
+---
+
+I built a retrieval-augmented chatbot over restaurant reviews with one hard boundary: the complete interaction had to stay on the machine. No hosted language model, no remote vector database, and no source text leaving the device.
+
+That boundary was useful. It turned privacy from a sentence in a policy into a property of the architecture.
+
+## The path through the system
+
+The application follows a compact retrieval path:
+
+1. The question becomes an embedding.
+2. ChromaDB searches the review embeddings for the five nearest matches.
+3. LangChain places those matches and the question into a grounded prompt.
+4. llama3.2 generates the answer through Ollama.
+
+Retrieval is doing more than supplying extra text. It constrains the model to the small part of the corpus that is most likely to contain evidence for the question.
+
+## Latency is part of correctness
+
+The system responds in under two seconds on the target setup. That number mattered because question answering is conversational: a correct response that arrives too slowly still breaks the experience.
+
+Working locally also makes the trade-off visible. Larger contexts can provide more evidence, but they increase prompt size and generation time. Retrieving five matches was a practical balance for this corpus—not a universal constant.
+
+## “Grounded” is not the same as “guaranteed”
+
+Retrieval-augmented generation can still fail in at least two distinct ways. Retrieval may miss the relevant review, or generation may misuse the context it receives. A smooth answer does not reveal which part went wrong.
+
+The next version should make that boundary easier to inspect. I would show the supporting review snippets beside the answer and build a small evaluation set for retrieval hit rate and answer faithfulness.
+
+Local inference solved the privacy constraint. The next challenge is making the system’s evidence as visible as its answer.

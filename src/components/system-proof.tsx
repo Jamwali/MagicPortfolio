@@ -39,7 +39,10 @@ export function SystemProof() {
           <Reveal>
             <div
               className="overflow-hidden rounded-[1.75rem] border border-[hsl(var(--edge))] bg-card shadow-[0_1px_2px_hsl(240_20%_10%/0.04),0_18px_50px_hsl(240_20%_10%/0.07)] dark:shadow-none"
-              style={{ "--trace": project.accent } as React.CSSProperties}
+              style={{
+                "--trace": project.accent,
+                "--trace-dark": project.accentDark,
+              } as React.CSSProperties}
             >
               <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[hsl(var(--rule))] px-5 py-4 sm:px-7">
                 <div className="flex rounded-full bg-secondary p-1" role="tablist" aria-label="System to trace">
@@ -72,8 +75,8 @@ export function SystemProof() {
                 <div className="relative">
                   <div className="absolute left-5 right-5 top-5 hidden h-px bg-[hsl(var(--rule))] sm:block" />
                   <div
-                    className="absolute left-5 top-5 hidden h-px bg-[var(--trace)] sm:block"
-                    style={{ width: `${(stageIndex / (project.stages.length - 1)) * (100 - 8)}%` }}
+                    className="absolute left-5 top-5 hidden h-px bg-[var(--trace)] transition-[width] duration-300 ease-out dark:bg-[var(--trace-dark)] sm:block"
+                    style={{ width: `${(stageIndex / (project.stages.length - 1)) * 92}%` }}
                   />
                   <ol className="relative grid gap-2 sm:grid-cols-5 sm:gap-3">
                     {project.stages.map((item, index) => {
@@ -88,11 +91,11 @@ export function SystemProof() {
                             className="group flex min-h-11 w-full items-center gap-3 rounded-xl px-2 text-left sm:flex-col sm:items-start sm:px-0 sm:text-center"
                           >
                             <span
-                              className="relative z-10 grid size-10 shrink-0 place-items-center rounded-full border bg-card text-[12px] font-semibold transition-colors"
-                              style={{
-                                borderColor: passed ? "var(--trace)" : "hsl(var(--edge))",
-                                color: passed ? "var(--trace)" : "hsl(var(--muted-foreground))",
-                              }}
+                              className={
+                                passed
+                                  ? "relative z-10 grid size-10 shrink-0 place-items-center rounded-full border border-[var(--trace)] bg-card text-[12px] font-semibold text-[var(--trace)] transition-colors dark:border-[var(--trace-dark)] dark:text-[var(--trace-dark)]"
+                                  : "relative z-10 grid size-10 shrink-0 place-items-center rounded-full border border-[hsl(var(--edge))] bg-card text-[12px] font-semibold text-muted-foreground transition-colors"
+                              }
                             >
                               {String(index + 1).padStart(2, "0")}
                             </span>
@@ -112,7 +115,7 @@ export function SystemProof() {
                   className="mt-8 min-h-[7.5rem] rounded-2xl bg-secondary px-5 py-5 sm:px-6"
                   aria-live="polite"
                 >
-                  <p className="text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: "var(--trace)" }}>
+                  <p className="text-[12px] font-medium uppercase tracking-[0.12em] text-[var(--trace)] dark:text-[var(--trace-dark)]">
                     Stage {stageIndex + 1} · {stage.label}
                   </p>
                   <p className="mt-2 max-w-[52ch] text-[clamp(1.125rem,1.7vw,1.45rem)] font-medium leading-snug tracking-tight">
