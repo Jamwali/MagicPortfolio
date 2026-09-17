@@ -5,6 +5,7 @@ import { Reveal } from "@/components/reveal";
 import { ScrollStatement } from "@/components/scroll-statement";
 import { Projects } from "@/components/projects";
 import ContactSection from "@/components/contact-section";
+import { SystemProof } from "@/components/system-proof";
 import { DATA } from "@/data/resume";
 
 // A snapshot of where things actually stand — not a second version of the
@@ -128,6 +129,9 @@ export default function Page() {
 
       {/* Scroll-revealed statement */}
       <ScrollStatement text={STATEMENT} />
+
+      {/* A recruiter can inspect the engineering path, not just the output. */}
+      <SystemProof />
 
       {/* Experience */}
       <section id="work" className="scroll-mt-24">

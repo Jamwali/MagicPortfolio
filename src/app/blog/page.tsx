@@ -5,7 +5,7 @@ import { getBlogPosts } from "@/data/blog";
 import { formatDate } from "@/lib/utils";
 
 export const metadata = {
-  title: "Blog",
+  title: "Writing",
   description: "Notes on machine learning, shipping software, and the work in between.",
 };
 

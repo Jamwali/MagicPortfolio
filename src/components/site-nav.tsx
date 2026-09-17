@@ -3,20 +3,22 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { AnimatedThemeToggler } from "@/components/magicui/animated-theme-toggler";
 import { DATA } from "@/data/resume";
 
 const sections = [
-  { href: "/#about", label: "About" },
   { href: "/#work", label: "Work" },
   { href: "/#projects", label: "Projects" },
+  { href: "/blog", label: "Writing" },
   { href: "/#contact", label: "Contact" },
 ];
 
 const RESUME = "/Ishaan_Jamwal_Coop_Resume.pdf";
 
 export function SiteNav() {
+  const pathname = usePathname();
   const { scrollY } = useScroll();
   const reduce = useReducedMotion();
   const height = useTransform(scrollY, [0, 140], [96, 72]);
@@ -26,6 +28,7 @@ export function SiteNav() {
   // The four sections stay reachable at every width: they sit in the first
   // column on a wide screen and behind a disclosure button on a phone.
   const [open, setOpen] = useState(false);
+  const [activeHref, setActiveHref] = useState<string | null>(null);
   const panelRef = useRef<HTMLDivElement>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);
 
@@ -49,6 +52,40 @@ export function SiteNav() {
       document.removeEventListener("pointerdown", onPointer);
     };
   }, [open]);
+
+  useEffect(() => {
+    if (pathname.startsWith("/blog")) {
+      setActiveHref("/blog");
+      return;
+    }
+    if (pathname.startsWith("/projects")) {
+      setActiveHref("/#projects");
+      return;
+    }
+    if (pathname !== "/") {
+      setActiveHref(null);
+      return;
+    }
+
+    const ids = ["work", "projects", "contact"];
+    const visible = new Map<string, number>();
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          visible.set(entry.target.id, entry.isIntersecting ? entry.intersectionRatio : 0);
+        });
+        const current = Array.from(visible.entries()).sort((a, b) => b[1] - a[1])[0];
+        setActiveHref(current && current[1] > 0 ? `/#${current[0]}` : null);
+      },
+      { rootMargin: "-20% 0px -55% 0px", threshold: [0, 0.15, 0.35, 0.6] },
+    );
+
+    ids.forEach((id) => {
+      const element = document.getElementById(id);
+      if (element) observer.observe(element);
+    });
+    return () => observer.disconnect();
+  }, [pathname]);
 
   return (
     <motion.header
@@ -79,9 +116,14 @@ export function SiteNav() {
               <li key={s.href}>
                 <Link
                   href={s.href}
-                  className="tap-44 inline-flex items-center text-[14px] text-[hsl(var(--nav-label))] transition-colors hover:text-foreground"
+                  aria-current={activeHref === s.href ? "location" : undefined}
+                  className="tap-44 group relative inline-flex items-center text-[14px] text-[hsl(var(--nav-label))] transition-colors hover:text-foreground aria-[current=location]:text-foreground"
                 >
                   {s.label}
+                  <span
+                    aria-hidden
+                    className="absolute -bottom-0.5 left-1/2 size-1 -translate-x-1/2 scale-0 rounded-full bg-signal transition-transform group-aria-[current=location]:scale-100"
+                  />
                 </Link>
               </li>
             ))}
@@ -136,9 +178,11 @@ export function SiteNav() {
                 target={s.href.endsWith(".pdf") ? "_blank" : undefined}
                 rel={s.href.endsWith(".pdf") ? "noopener noreferrer" : undefined}
                 onClick={() => setOpen(false)}
-                className="flex min-h-[52px] items-center text-[17px] font-medium text-foreground"
+                aria-current={activeHref === s.href ? "location" : undefined}
+                className="flex min-h-[52px] items-center justify-between text-[17px] font-medium text-foreground"
               >
                 {s.label}
+                {activeHref === s.href && <span aria-hidden className="size-1.5 rounded-full bg-signal" />}
               </Link>
             </li>
           ))}

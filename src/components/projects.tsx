@@ -16,6 +16,7 @@ import {
 import { DATA } from "@/data/resume";
 import { AnimatedHeading } from "@/components/animated-heading";
 import { SCENES } from "@/components/project-scenes";
+import { getCaseStudyForTitle } from "@/data/case-studies";
 import { cn } from "@/lib/utils";
 import type React from "react";
 
@@ -149,6 +150,7 @@ function useSceneProgress(target: React.RefObject<HTMLElement>) {
 
 function ProjectPanel({ project, index }: { project: Project; index: number }) {
   const links = projectLinks(project);
+  const caseStudy = getCaseStudyForTitle(project.title);
   const num = String(index + 1).padStart(2, "0");
   const reverse = index % 2 === 1;
   const { ink, bright, card, glow: glowColor } = IDENTITY[index % IDENTITY.length];
@@ -229,24 +231,31 @@ function ProjectPanel({ project, index }: { project: Project; index: number }) {
             </dl>
           </Rise>
 
-          {links.length > 0 && (
-            <Rise delay={0.2}>
-              <div className="mt-9 flex flex-wrap gap-8">
-                {links.map((l) => (
-                  <Link
-                    key={l.type}
-                    href={l.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="link-underline tap-44 inline-flex items-center text-[15px] font-medium text-[var(--project-ink)] dark:text-[var(--project-ink-dark)]"
-                  >
-                    {linkLabel(l.type)}
-                    <span className="link-underline-bar" />
-                  </Link>
-                ))}
-              </div>
-            </Rise>
-          )}
+          <Rise delay={0.2}>
+            <div className="mt-9 flex flex-wrap gap-8">
+              {caseStudy && (
+                <Link
+                  href={`/projects/${caseStudy.slug}`}
+                  className="link-underline tap-44 inline-flex items-center text-[15px] font-medium text-[var(--project-ink)] dark:text-[var(--project-ink-dark)]"
+                >
+                  Read case study
+                  <span className="link-underline-bar" />
+                </Link>
+              )}
+              {links.map((l) => (
+                <Link
+                  key={l.type}
+                  href={l.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="link-underline tap-44 inline-flex items-center text-[15px] font-medium text-[var(--project-ink)] dark:text-[var(--project-ink-dark)]"
+                >
+                  {linkLabel(l.type)}
+                  <span className="link-underline-bar" />
+                </Link>
+              ))}
+            </div>
+          </Rise>
         </div>
 
         {/* the project's scene, drawn as you scroll, on a card unique to it */}
